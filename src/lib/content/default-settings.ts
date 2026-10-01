@@ -1,4 +1,5 @@
 import type { SiteSettings } from "@/lib/types";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 // Fallback content, gebruikt zolang er geen (of geen bereikbare) Sanity-CMS-koppeling is.
 // Kay kan al deze waarden straks zelf overschrijven via /studio.
@@ -8,7 +9,7 @@ export const defaultSettings: SiteSettings = {
   toonOfficieleBedrijfsnaam: false,
   kvk: "42164139",
   contact: {
-    email: "info@ace-flex.nl",
+    email: CONTACT_EMAIL,
     telefoon: "0615151606",
     adres: "Rietbaan 2-4, 2908 LP Capelle a/d IJssel",
   },

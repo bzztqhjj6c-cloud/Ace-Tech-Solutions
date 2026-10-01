@@ -1,3 +1,5 @@
+import { CONTACT_EMAIL } from "@/lib/contact";
+
 export function UnderConstruction() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#123055] px-6 text-[#EAF1F8]">
@@ -16,8 +18,8 @@ export function UnderConstruction() {
         </p>
 
         <div className="mt-8 space-y-2 font-mono text-sm">
-          <a href="mailto:info@ace-flex.nl" className="block hover:text-[#E3A052]">
-            info@ace-flex.nl
+          <a href={`mailto:${CONTACT_EMAIL}`} className="block hover:text-[#E3A052]">
+            {CONTACT_EMAIL}
           </a>
           <a href="tel:0615151606" className="block hover:text-[#E3A052]">
             0615151606

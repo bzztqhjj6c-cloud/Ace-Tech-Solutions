@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const WHATSAPP_NUMMER = "31600000001";
+import { WHATSAPP_PHONE } from "@/lib/contact";
 
 export function WhatsAppButton() {
   const [visible, setVisible] = useState(false);
@@ -16,7 +15,7 @@ export function WhatsAppButton() {
 
   return (
     <a
-      href={`https://wa.me/${WHATSAPP_NUMMER}`}
+      href={`https://wa.me/${WHATSAPP_PHONE}`}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Vragen? Whatsapp ons via WhatsApp"

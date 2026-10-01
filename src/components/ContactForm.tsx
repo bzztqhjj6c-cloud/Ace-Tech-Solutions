@@ -20,6 +20,10 @@ export function ContactForm() {
 
   return (
     <form action={formAction} className="space-y-4">
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="website">Laat dit veld leeg</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
       <div>
         <label htmlFor="naam" className="eyebrow block opacity-70">Naam</label>
         <input
@@ -41,6 +45,18 @@ export function ContactForm() {
         />
       </div>
       <div>
+        <label htmlFor="telefoon" className="eyebrow block opacity-70">Telefoonnummer</label>
+        <input
+          id="telefoon"
+          name="telefoon"
+          type="tel"
+          autoComplete="tel"
+          required
+          maxLength={40}
+          className="mt-1 w-full border border-line/60 bg-panel px-4 py-3 text-foreground focus:border-accent focus:outline-none"
+        />
+      </div>
+      <div>
         <label htmlFor="bericht" className="eyebrow block opacity-70">Bericht</label>
         <textarea
           id="bericht"
@@ -52,7 +68,7 @@ export function ContactForm() {
       </div>
 
       {state.status === "error" && (
-        <p className="eyebrow text-accent">{state.message}</p>
+        <p role="alert" className="eyebrow text-accent">{state.message}</p>
       )}
 
       <button

@@ -28,6 +28,7 @@ export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
   bedrijfsnaam,
   tagline,
   toonOfficieleBedrijfsnaam,
+  logo { "url": asset->url, alt },
   contact,
   kleuren
 }`;

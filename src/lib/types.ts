@@ -66,6 +66,10 @@ export interface SiteSettings {
   tagline: string;
   toonOfficieleBedrijfsnaam: boolean;
   kvk: string;
+  logo?: {
+    url?: string;
+    alt?: string;
+  } | null;
   contact: {
     email: string;
     telefoon: string;

@@ -4,6 +4,7 @@ import { PhotoHero } from "@/components/PhotoHero";
 import { FUNCTIEGROEPEN } from "@/lib/types";
 import { PREMIUM_TILE_STYLE, PREMIUM_CTA_STYLE } from "@/lib/premiumStyle";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 const WHATSAPP_NUMMER = "31615151606";
 
@@ -130,8 +131,8 @@ export default function ZzpersPage() {
                 <div>
                   <dt className="eyebrow opacity-60">Mail</dt>
                   <dd className="mt-1">
-                    <a href="mailto:info@ace-flex.nl" className="hover:text-accent">
-                      info@ace-flex.nl
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-accent">
+                      {CONTACT_EMAIL}
                     </a>
                   </dd>
                 </div>

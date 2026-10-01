@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import { Container } from "@/components/Container";
 import type { SiteSettings } from "@/lib/types";
@@ -23,8 +24,15 @@ export function Header({ settings }: { settings: SiteSettings }) {
   return (
     <header className="sticky top-0 z-50 border-b-2 border-accent bg-panel">
       <Container className="flex h-20 items-center justify-between">
-        <Link href="/" className="font-display text-xl uppercase leading-none tracking-tight text-foreground sm:text-2xl">
-          {displayName}
+        <Link href="/" className="flex max-w-[min(14rem,48vw)] items-center font-display text-xl uppercase leading-none tracking-tight text-foreground sm:text-2xl">
+          <Image
+            src={settings.logo?.url || "/ace-flex-solutions-header-transparant.svg"}
+            alt={settings.logo?.alt || displayName}
+            width={260}
+            height={86}
+            unoptimized
+            className="h-14 w-auto max-w-full object-contain"
+          />
         </Link>
 
         <nav className="ml-12 hidden items-center gap-7 font-mono text-sm font-semibold uppercase tracking-wide text-foreground md:flex">
