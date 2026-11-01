@@ -136,11 +136,15 @@ export default function PrivacyverklaringPage() {
             en vertrouwelijkheid van jouw gegevens. Ace Flex Solutions blijft verantwoordelijk voor
             deze verwerkingen.
           </p>
-          <p>
-            Partijen die wij hiervoor inschakelen zijn: Meta (Facebook en Instagram, voor het
-            formulier), WhatsApp, Carerix via Step2Go (ons kandidatenbestand), Mijndomein (website en
-            mail) en e-boekhouden.nl (administratie).
-          </p>
+          <p>Partijen die wij hiervoor inschakelen zijn:</p>
+          <List
+            items={[
+              "Leveranciers van advertentiediensten en communicatieplatformen (zoals Meta en WhatsApp);",
+              "Leveranciers van ons recruitmentsysteem en kandidatendatabase;",
+              "IT-dienstverleners voor onze website, e-mail en hosting;",
+              "Leveranciers van onze boekhoud- en administratiesoftware.",
+            ]}
+          />
           <p>Aan opdrachtgevers geven wij je gegevens alleen door met jouw toestemming.</p>
         </Section>
 
