@@ -5,7 +5,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 
 // TODO: vervangen door een foto van Ace Flex Solution zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
-const HERO_IMAGE = "https://images.unsplash.com/photo-1737874960921-d1205a4f55da";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1737874960921-d1205a4f55da?w=2400&q=80&fm=jpg&fit=crop";
 
 const WAT_WE_OPLOSSEN = [
   "Uitbesteden van technische projecten",

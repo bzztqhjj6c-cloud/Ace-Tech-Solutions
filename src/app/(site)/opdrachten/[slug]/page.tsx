@@ -1,10 +1,17 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
-import { getVacatureBySlug } from "@/lib/vacatures";
+import { getVacatureBySlug, getVacatures } from "@/lib/vacatures";
 import { PREMIUM_CTA_STYLE } from "@/lib/premiumStyle";
 
 export const revalidate = 60;
+
+// Bekende opdrachten worden vooraf opgebouwd; nieuwe opdrachten uit Sanity
+// worden bij het eerste bezoek opgebouwd en daarna gecachet.
+export async function generateStaticParams() {
+  const vacatures = await getVacatures();
+  return vacatures.map((vacature) => ({ slug: vacature.slug }));
+}
 
 export default async function VacatureDetailPage({
   params,

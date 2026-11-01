@@ -8,7 +8,7 @@ const WHATSAPP_NUMMER = "31615151606";
 
 // TODO: vervangen door een foto van Ace Flex Solution zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
-const HERO_IMAGE = "https://images.unsplash.com/photo-1581092160607-ee22621dd758";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=2400&q=80&fm=jpg&fit=crop";
 
 const WAAROM_ACE_FLEX = [
   ["Flexibel inzetbaar", "Als vervanging bij ziekte of verlof, aanvulling op je team, of voor een tijdelijk project."],

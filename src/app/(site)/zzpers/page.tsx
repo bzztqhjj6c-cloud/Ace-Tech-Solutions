@@ -10,7 +10,7 @@ const WHATSAPP_NUMMER = "31615151606";
 
 // TODO: vervangen door een foto van Ace Flex Solution zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
-const HERO_IMAGE = "https://images.unsplash.com/photo-1661263989536-d44cbe1c2ff0";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1661263989536-d44cbe1c2ff0?w=2400&q=80&fm=jpg&fit=crop";
 
 const WAT_JE_KRIJGT = [
   ["Eerlijke tarieven, geen gedoe", "Je weet vooraf waar je aan toe bent. Geen verborgen inhoudingen, geen bemiddelaar die aan beide kanten meesnoept."],
