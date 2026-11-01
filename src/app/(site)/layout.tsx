@@ -25,7 +25,7 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ace Flex Solution | technisch personeel voor de procesindustrie",
+  title: "Ace Flex Solutions | Connecting Winners in Technology",
   description:
     "Boutique werving en bemiddeling van freelance technici in de procesindustrie. Naast de klant staan, niet erboven.",
 };
