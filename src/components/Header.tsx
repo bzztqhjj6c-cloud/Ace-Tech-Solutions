@@ -47,7 +47,7 @@ export function Header({ settings }: { settings: SiteSettings }) {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="relative z-10 min-h-11 cursor-pointer select-none border-2 border-line px-3 py-2 font-mono text-xs uppercase text-foreground touch-manipulation md:hidden"
+          className="relative z-10 min-h-11 cursor-pointer select-none border-2 border-line px-3 py-2 font-mono text-xs font-semibold uppercase text-foreground touch-manipulation md:hidden"
           aria-expanded={open}
           aria-controls="mobile-navigation"
         >

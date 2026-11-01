@@ -11,7 +11,7 @@ import { PREMIUM_TILE_STYLE, PREMIUM_CTA_STYLE } from "@/lib/premiumStyle";
 
 const WAT_TECHNICI_ZOEKEN = [
   "Wekelijks uitbetaald",
-  "Eén vast aanspreekpunt",
+  "ÉÉN vast aanspreekpunt",
   "Marktconform tarief",
 ];
 

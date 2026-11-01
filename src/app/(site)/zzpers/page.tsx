@@ -15,7 +15,7 @@ const HERO_IMAGE = "https://images.unsplash.com/photo-1661263989536-d44cbe1c2ff0
 const WAT_JE_KRIJGT = [
   ["Eerlijke tarieven, geen gedoe", "Je weet vooraf waar je aan toe bent. Geen verborgen inhoudingen, geen bemiddelaar die aan beide kanten meesnoept."],
   ["Opdrachten die passen bij je vakgebied", "Geen willekeurige klussen om een rooster te vullen. We matchen op basis van wat je kan en wilt, niet op wie het eerst beschikbaar is."],
-  ["Eén aanspreekpunt, altijd bereikbaar", "Je schakelt met dezelfde persoon en niet met een wisselend accountteam of een callcenter vol onbekenden."],
+  ["ÉÉN aanspreekpunt, altijd bereikbaar", "Je schakelt met dezelfde persoon en niet met een wisselend accountteam of een callcenter vol onbekenden."],
   ["Snel duidelijkheid", "Reageer je op een opdracht, dan hoor je snel of het een match is. Geen weken wachten op een antwoord dat niet komt."],
 ];
 

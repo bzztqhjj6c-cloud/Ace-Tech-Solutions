@@ -12,7 +12,7 @@ const HERO_IMAGE = "https://images.unsplash.com/photo-1581092160607-ee22621dd758
 
 const WAAROM_ACE_FLEX = [
   ["Flexibel inzetbaar", "Als vervanging bij ziekte of verlof, aanvulling op je team, of voor een tijdelijk project."],
-  ["Eén vast aanspreekpunt", "Je schakelt met dezelfde persoon, geen wisselend accountteam."],
+  ["ÉÉN vast aanspreekpunt", "Je schakelt met dezelfde persoon, geen wisselend accountteam."],
   ["Matching op vakgebied", "We luisteren eerst naar wat er speelt en matchen op basis daarvan. Dat scheelt inwerktijd en misverstanden."],
   ["Zelfstandige professionals", "Onze technici zijn gewend zelfstandig te werken, zonder dat je ze aan de hand hoeft te nemen."],
 ];
