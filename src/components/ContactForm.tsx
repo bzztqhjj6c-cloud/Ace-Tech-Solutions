@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState } from "react";
 import { submitContactForm, type ContactFormState } from "@/app/(site)/contact/actions";
 import { PREMIUM_TILE_STYLE, PREMIUM_CTA_STYLE } from "@/lib/premiumStyle";
@@ -79,6 +80,14 @@ export function ContactForm() {
       >
         {pending ? "Versturen…" : "Verstuur bericht"}
       </button>
+
+      <p className="text-xs opacity-60">
+        Lees in onze{" "}
+        <Link href="/privacyverklaring" className="underline hover:text-accent">
+          privacyverklaring
+        </Link>{" "}
+        hoe wij met je gegevens omgaan.
+      </p>
     </form>
   );
 }

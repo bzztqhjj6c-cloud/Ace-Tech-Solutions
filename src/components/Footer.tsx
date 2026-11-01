@@ -44,7 +44,10 @@ export function Footer({ settings }: { settings: SiteSettings }) {
       </Container>
 
       <div className="eyebrow border-t border-line/40 py-3 text-center opacity-60">
-        © {new Date().getFullYear()} {settings.bedrijfsnaam} | KVK {settings.kvk}
+        © {new Date().getFullYear()} {settings.bedrijfsnaam} | KVK {settings.kvk} |{" "}
+        <Link href="/privacyverklaring" className="underline hover:text-accent">
+          Privacyverklaring
+        </Link>
       </div>
     </footer>
   );
