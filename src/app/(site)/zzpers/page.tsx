@@ -8,7 +8,7 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 
 const WHATSAPP_NUMMER = "31615151606";
 
-// TODO: vervangen door een foto van Ace Flex Solution zelf zodra beschikbaar.
+// TODO: vervangen door een foto van Ace Flex Solutions zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
 const HERO_IMAGE = "https://images.unsplash.com/photo-1661263989536-d44cbe1c2ff0?w=2400&q=80&fm=jpg&fit=crop";
 
@@ -116,7 +116,7 @@ export default function ZzpersPage() {
           <div className="grid gap-12 md:grid-cols-2">
             <div>
               <h2 className="font-display text-3xl uppercase leading-tight tracking-wide">
-                Sluit je aan bij Ace Flex Solution?
+                Sluit je aan bij Ace Flex Solutions?
               </h2>
               <p className="mt-4 text-lg leading-relaxed opacity-90">
                 Op zoek naar je volgende opdracht, of gewoon nieuwsgierig wat er voor je

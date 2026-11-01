@@ -69,8 +69,8 @@ export async function submitContactForm(
       from,
       to: email,
       replyTo: CONTACT_EMAIL,
-      subject: "We hebben je bericht ontvangen | Ace Flex Solution",
-      text: `Beste ${naam},\n\nBedankt voor je bericht aan Ace Flex Solution. We hebben je gegevens goed ontvangen en nemen zo snel mogelijk contact met je op.\n\nMet vriendelijke groet,\nAce Flex Solution\n${CONTACT_EMAIL}`,
+      subject: "We hebben je bericht ontvangen | Ace Flex Solutions",
+      text: `Beste ${naam},\n\nBedankt voor je bericht aan Ace Flex Solutions. We hebben je gegevens goed ontvangen en nemen zo snel mogelijk contact met je op.\n\nMet vriendelijke groet,\nAce Flex Solutions\n${CONTACT_EMAIL}`,
     });
 
     if (confirmationError) {

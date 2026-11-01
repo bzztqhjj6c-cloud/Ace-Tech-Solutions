@@ -4,7 +4,7 @@ import { PhotoHero } from "@/components/PhotoHero";
 import { OpdrachtenBrowser } from "@/components/OpdrachtenBrowser";
 import { getVacatures } from "@/lib/vacatures";
 
-// TODO: vervangen door een foto van Ace Flex Solution zelf zodra beschikbaar.
+// TODO: vervangen door een foto van Ace Flex Solutions zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
 const HERO_IMAGE = "https://images.unsplash.com/photo-1512813759302-a44af29da3c1?w=2400&q=80&fm=jpg&fit=crop";
 
