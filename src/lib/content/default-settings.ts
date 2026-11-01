@@ -4,7 +4,7 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 // Fallback content, gebruikt zolang er geen (of geen bereikbare) Sanity-CMS-koppeling is.
 // Kay kan al deze waarden straks zelf overschrijven via /studio.
 export const defaultSettings: SiteSettings = {
-  bedrijfsnaam: "Ace Flex Solution",
+  bedrijfsnaam: "Ace Flex Solutions",
   tagline: "Technische ZZP opdrachten in jouw regio",
   toonOfficieleBedrijfsnaam: false,
   kvk: "42164139",

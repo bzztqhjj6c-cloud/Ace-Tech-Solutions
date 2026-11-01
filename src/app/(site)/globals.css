@@ -16,9 +16,10 @@
   --color-accent: var(--accent);
   --color-line: var(--line);
   --color-panel: var(--panel);
-  --font-display: var(--font-archivo-black);
+  --font-display: var(--font-montserrat);
   --font-sans: var(--font-inter);
-  --font-mono: var(--font-plex-mono);
+  /* Menu, knoppen en labels: ook Montserrat (voorheen een monospace-letter). */
+  --font-mono: var(--font-montserrat);
 }
 
 * {
@@ -40,8 +41,14 @@ body {
   background-attachment: fixed;
 }
 
+/* Koppen in Montserrat extra vet, zodat ze net zo krachtig blijven als voorheen. */
+.font-display {
+  font-weight: 800;
+}
+
 .eyebrow {
   font-family: var(--font-mono);
+  font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;

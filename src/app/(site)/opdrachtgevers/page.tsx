@@ -6,13 +6,13 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 
 const WHATSAPP_NUMMER = "31615151606";
 
-// TODO: vervangen door een foto van Ace Flex Solution zelf zodra beschikbaar.
+// TODO: vervangen door een foto van Ace Flex Solutions zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
-const HERO_IMAGE = "https://images.unsplash.com/photo-1581092160607-ee22621dd758";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=2400&q=80&fm=jpg&fit=crop";
 
 const WAAROM_ACE_FLEX = [
   ["Flexibel inzetbaar", "Als vervanging bij ziekte of verlof, aanvulling op je team, of voor een tijdelijk project."],
-  ["Eén vast aanspreekpunt", "Je schakelt met dezelfde persoon, geen wisselend accountteam."],
+  ["ÉÉN vast aanspreekpunt", "Je schakelt met dezelfde persoon, geen wisselend accountteam."],
   ["Matching op vakgebied", "We luisteren eerst naar wat er speelt en matchen op basis daarvan. Dat scheelt inwerktijd en misverstanden."],
   ["Zelfstandige professionals", "Onze technici zijn gewend zelfstandig te werken, zonder dat je ze aan de hand hoeft te nemen."],
 ];
@@ -39,7 +39,7 @@ export default async function OpdrachtgeversPage() {
 
       <div className="border-b-2 border-line bg-panel py-16 md:py-24">
         <Container>
-          <p className="eyebrow text-accent tracking-[0.2em]">[ Waarom Ace Flex Solution ]</p>
+          <p className="eyebrow text-accent tracking-[0.2em]">[ Waarom Ace Flex Solutions ]</p>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {WAAROM_ACE_FLEX.map(([title, body]) => (
               <ScrollReveal key={title} className="h-full">
@@ -61,7 +61,7 @@ export default async function OpdrachtgeversPage() {
             <p>
               Een storing wacht niet op een geschikt moment. Een monteur die uitvalt, een
               vacature die al maanden openstaat, een ploegendienst die op omvallen staat: in de
-              procesindustrie voel je dat direct op de vloer. Ace Flex Solution zorgt dat dat
+              procesindustrie voel je dat direct op de vloer. Ace Flex Solutions zorgt dat dat
               niet gebeurt.
             </p>
             <p>
@@ -99,11 +99,11 @@ export default async function OpdrachtgeversPage() {
           <div className="grid gap-12 md:grid-cols-2">
             <div>
               <h2 className="font-display text-3xl uppercase leading-tight tracking-wide">
-                Samenwerken met Ace Flex Solution?
+                Samenwerken met Ace Flex Solutions?
               </h2>
               <p className="mt-4 text-lg leading-relaxed opacity-90">
                 Of je nu snel een zzp&apos;er nodig hebt of wilt sparren over een technisch
-                vraagstuk, wij helpen je graag verder. Bij Ace Flex Solution denken we mee, schakelen we
+                vraagstuk, wij helpen je graag verder. Bij Ace Flex Solutions denken we mee, schakelen we
                 snel en leveren we vakmensen van topniveau. Daar draait het om. Wat kunnen wij
                 voor jou betekenen?
               </p>

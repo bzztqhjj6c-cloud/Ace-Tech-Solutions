@@ -8,7 +8,11 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   if (!sanityClient) return defaultSettings;
 
   try {
-    const settings = await sanityClient.fetch<SiteSettings | null>(siteSettingsQuery);
+    const settings = await sanityClient.fetch<SiteSettings | null>(
+      siteSettingsQuery,
+      {},
+      { next: { revalidate: 60, tags: ["siteSettings"] } },
+    );
     if (!settings) return defaultSettings;
     return {
       ...defaultSettings,

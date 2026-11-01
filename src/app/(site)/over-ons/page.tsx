@@ -3,9 +3,9 @@ import { PhotoHero } from "@/components/PhotoHero";
 import { PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
-// TODO: vervangen door een foto van Ace Flex Solution zelf zodra beschikbaar.
+// TODO: vervangen door een foto van Ace Flex Solutions zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
-const HERO_IMAGE = "https://images.unsplash.com/photo-1737874960921-d1205a4f55da";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1737874960921-d1205a4f55da?w=2400&q=80&fm=jpg&fit=crop";
 
 const WAT_WE_OPLOSSEN = [
   "Uitbesteden van technische projecten",
@@ -21,7 +21,7 @@ export default function OverOnsPage() {
         image={HERO_IMAGE}
         imageAlt="Twee monteurs in een industriële werkplaats die samen een tablet bekijken en overleggen"
         objectPosition="center 30%"
-        headline="Waar Ace Flex Solution om draait"
+        headline="Waar Ace Flex Solutions om draait"
       />
 
       <div className="border-b-2 border-line bg-panel py-16 md:py-24">
@@ -45,11 +45,11 @@ export default function OverOnsPage() {
           <p>
             Een storing wacht niet op een geschikt moment. Een monteur die uitvalt, een vacature
             die al maanden openstaat, een ploegendienst die op omvallen staat: in de
-            procesindustrie voel je dat direct terug op de vloer. Ace Flex Solution zorgt dat
+            procesindustrie voel je dat direct terug op de vloer. Ace Flex Solutions zorgt dat
             dat niet gebeurt.
           </p>
           <p>
-            Ace Flex Solution is er voor twee groepen. Voor zzp&apos;ers die mooie, uitdagende
+            Ace Flex Solutions is er voor twee groepen. Voor zzp&apos;ers die mooie, uitdagende
             opdrachten willen realiseren in de procesindustrie, met werk dat past bij hun kennis
             en ervaring. En voor bedrijven die vaklui nodig hebben om hun fabriek draaiende te
             houden of naar een hoger niveau te tillen.

@@ -8,14 +8,14 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 
 const WHATSAPP_NUMMER = "31615151606";
 
-// TODO: vervangen door een foto van Ace Flex Solution zelf zodra beschikbaar.
+// TODO: vervangen door een foto van Ace Flex Solutions zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
-const HERO_IMAGE = "https://images.unsplash.com/photo-1661263989536-d44cbe1c2ff0";
+const HERO_IMAGE = "https://images.unsplash.com/photo-1661263989536-d44cbe1c2ff0?w=2400&q=80&fm=jpg&fit=crop";
 
 const WAT_JE_KRIJGT = [
   ["Eerlijke tarieven, geen gedoe", "Je weet vooraf waar je aan toe bent. Geen verborgen inhoudingen, geen bemiddelaar die aan beide kanten meesnoept."],
   ["Opdrachten die passen bij je vakgebied", "Geen willekeurige klussen om een rooster te vullen. We matchen op basis van wat je kan en wilt, niet op wie het eerst beschikbaar is."],
-  ["Eén aanspreekpunt, altijd bereikbaar", "Je schakelt met dezelfde persoon en niet met een wisselend accountteam of een callcenter vol onbekenden."],
+  ["ÉÉN aanspreekpunt", "Je schakelt met dezelfde persoon en niet met een wisselend accountteam of een callcenter vol onbekenden."],
   ["Snel duidelijkheid", "Reageer je op een opdracht, dan hoor je snel of het een match is. Geen weken wachten op een antwoord dat niet komt."],
 ];
 
@@ -116,7 +116,7 @@ export default function ZzpersPage() {
           <div className="grid gap-12 md:grid-cols-2">
             <div>
               <h2 className="font-display text-3xl uppercase leading-tight tracking-wide">
-                Sluit je aan bij Ace Flex Solution?
+                Sluit je aan bij Ace Flex Solutions?
               </h2>
               <p className="mt-4 text-lg leading-relaxed opacity-90">
                 Op zoek naar je volgende opdracht, of gewoon nieuwsgierig wat er voor je

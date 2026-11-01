@@ -5,7 +5,7 @@ export function UnderConstruction() {
     <main className="flex min-h-screen items-center justify-center bg-[#123055] px-6 text-[#EAF1F8]">
       <section className="max-w-xl text-center">
         <p className="font-mono text-sm uppercase tracking-[0.25em] text-[#E3A052]">
-          Ace Flex Solution
+          Ace Flex Solutions
         </p>
 
         <h1 className="mt-6 font-display text-5xl uppercase leading-tight sm:text-7xl">
