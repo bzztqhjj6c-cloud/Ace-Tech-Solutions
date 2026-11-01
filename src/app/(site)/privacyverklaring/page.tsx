@@ -42,7 +42,7 @@ export default function PrivacyverklaringPage() {
       <PageHero
         eyebrow="Privacy"
         title="Privacyverklaring"
-        intro="Ace Flex Solutions, gevestigd aan Rietbaan 2 4, 2908 LP Capelle aan den IJssel, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring."
+        intro="Ace Flex Solutions, gevestigd aan Rietbaan 2-4, 2908 LP Capelle aan den IJssel, is verantwoordelijk voor de verwerking van persoonsgegevens zoals weergegeven in deze privacyverklaring."
       />
 
       <Container className="max-w-3xl space-y-10 py-16 md:py-24">
@@ -55,7 +55,7 @@ export default function PrivacyverklaringPage() {
               </a>
             </dd>
             <dt className="opacity-60">Adres</dt>
-            <dd>Rietbaan 2 4, 2908 LP Capelle aan den IJssel</dd>
+            <dd>Rietbaan 2-4, 2908 LP Capelle aan den IJssel</dd>
             <dt className="opacity-60">KvK nummer</dt>
             <dd>42164139</dd>
             <dt className="opacity-60">Telefoon</dt>
@@ -74,15 +74,16 @@ export default function PrivacyverklaringPage() {
         <Section title="Persoonsgegevens die wij verwerken">
           <p>
             Ace Flex Solutions verwerkt je persoonsgegevens omdat je gebruik maakt van onze
-            dienstverlening en omdat je ze zelf aan ons geeft, bijvoorbeeld via een formulier op
-            Facebook of Instagram, via WhatsApp, per mail of telefonisch. Dit zijn de gegevens die
-            wij verwerken:
+            dienstverlening en omdat je ze zelf aan ons geeft, bijvoorbeeld via het contactformulier
+            op onze website, via een formulier op Facebook of Instagram, via WhatsApp, per mail of
+            telefonisch. Dit zijn de gegevens die wij verwerken:
           </p>
           <List
             items={[
               "Voor en achternaam",
               "Telefoonnummer",
               "Mailadres",
+              "De inhoud van je bericht als je het contactformulier op onze website gebruikt",
               "Je antwoorden op de vragen in ons formulier: of je als ZZP'er werkt, in welke sector je de meeste ervaring hebt, wat je vakgebied is en wat je belangrijk vindt in een opdracht",
             ]}
           />
@@ -107,7 +108,7 @@ export default function PrivacyverklaringPage() {
             ]}
           />
           <p>
-            Wij verwerken je gegevens op basis van jouw toestemming, die je geeft door het formulier
+            Wij verwerken je gegevens op basis van jouw toestemming, die je geeft door een formulier
             in te vullen, en om onze bemiddeling uit te voeren. Je kunt je toestemming op elk moment
             intrekken.
           </p>
