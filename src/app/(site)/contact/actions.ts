@@ -52,9 +52,11 @@ export async function submitContactForm(
     const { error } = await resend.emails.send({
       from,
       to: FORM_RECIPIENT_EMAIL,
-      replyTo: email,
+      // Geen replyTo naar het adres van de bezoeker: een Reply-To op een ander domein
+      // (bijv. hotmail.com) laat de spamfilter van de mailhost deze mail als spam markeren
+      // (SPOOF_REPLYTO). Het adres staat daarom bovenaan in de tekst.
       subject: `Websitebericht van ${naam}`,
-      text: `Naam: ${naam}\nE-mail: ${email}\nTelefoon: ${telefoon}\n\nBericht:\n${bericht}`,
+      text: `Reageren? Mail naar ${email} of bel ${telefoon}.\n\nNaam: ${naam}\nE-mail: ${email}\nTelefoon: ${telefoon}\n\nBericht:\n${bericht}`,
     });
 
     if (error) {
