@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { CookieConsent } from "@/components/CookieConsent";
 import { UnderConstruction } from "@/components/UnderConstruction";
 import { getSiteSettings } from "@/lib/settings";
 
@@ -60,6 +61,7 @@ export default async function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer settings={settings} />
         <WhatsAppButton />
+        <CookieConsent />
       </body>
     </html>
   );

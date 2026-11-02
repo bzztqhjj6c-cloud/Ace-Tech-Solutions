@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 import { SECTOREN } from "@/lib/types";
 import type { SiteSettings } from "@/lib/types";
 
@@ -47,7 +48,8 @@ export function Footer({ settings }: { settings: SiteSettings }) {
         © {new Date().getFullYear()} {settings.bedrijfsnaam} | KVK {settings.kvk} |{" "}
         <Link href="/privacyverklaring" className="underline hover:text-accent">
           Privacyverklaring
-        </Link>
+        </Link>{" "}
+        | <CookieSettingsButton className="uppercase" />
       </div>
     </footer>
   );
