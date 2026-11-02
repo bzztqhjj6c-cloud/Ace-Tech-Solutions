@@ -153,8 +153,7 @@ export function CookieConsent() {
         style={PREMIUM_TILE_STYLE}
       >
         <p className="text-sm leading-relaxed opacity-90">
-          Wij gebruiken cookies van Meta (Facebook en Instagram) om te meten hoe onze advertenties
-          werken en ze te verbeteren. Dat doen we alleen als je daarvoor toestemming geeft. Lees meer
+          Wij gebruiken cookies van Meta om te meten hoe onze advertenties werken en ze te verbeteren. Dat doen we alleen als je daarvoor toestemming geeft. Lees meer
           in onze{" "}
           <Link href="/privacyverklaring" className="text-accent underline hover:no-underline">
             privacyverklaring

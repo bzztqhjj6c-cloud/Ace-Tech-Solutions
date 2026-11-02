@@ -158,8 +158,8 @@ export default function PrivacyverklaringPage() {
             jouw gebruiksgemak, en hiervoor vragen wij geen toestemming.
           </p>
           <p>
-            Daarnaast gebruiken wij, alleen als je daar toestemming voor geeft, de Meta Pixel van Meta
-            (Facebook en Instagram). Hiermee meten wij hoe bezoekers via onze advertenties op de
+            Daarnaast gebruiken wij, alleen als je daar toestemming voor geeft, de Meta Pixel van Meta.
+            Hiermee meten wij hoe bezoekers via onze advertenties op de
             website komen, zodat wij onze advertenties kunnen verbeteren en kunnen tonen aan mensen
             voor wie ze relevant zijn. Hierbij worden cookies geplaatst en worden gegevens zoals je
             IP-adres, de pagina&apos;s die je bezoekt en informatie over je browser en apparaat
