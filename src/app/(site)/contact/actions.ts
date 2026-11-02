@@ -1,8 +1,13 @@
 "use server";
 
+import { Resend } from "resend";
 import { CONTACT_EMAIL, FORM_RECIPIENT_EMAIL } from "@/lib/contact";
-import { CONFIRMATION_SUBJECT, confirmationHtml, confirmationText } from "@/lib/email/confirmation";
-import { getMailer } from "@/lib/email/mailer";
+import {
+  CONFIRMATION_SUBJECT,
+  confirmationHtml,
+  confirmationText,
+  formatSender,
+} from "@/lib/email/confirmation";
 
 export type ContactFormState = {
   status: "idle" | "success" | "error";
@@ -39,16 +44,21 @@ export async function submitContactForm(
     return { status: "error", message: "Vul een geldig telefoonnummer in." };
   }
 
-  const mailer = getMailer();
-  if (!mailer) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const fromAddress = process.env.RESEND_FROM_EMAIL;
+  if (!apiKey || !fromAddress) {
     return {
       status: "error",
       message: `Online versturen is nog niet ingesteld. Mail ons rechtstreeks via ${CONTACT_EMAIL}.`,
     };
   }
 
+  const from = formatSender(fromAddress);
+
   try {
-    const { error } = await mailer.send({
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from,
       to: FORM_RECIPIENT_EMAIL,
       // Geen replyTo naar het adres van de bezoeker: een Reply-To op een ander domein
       // (bijv. hotmail.com) laat de spamfilter van de mailhost deze mail als spam markeren
@@ -58,14 +68,15 @@ export async function submitContactForm(
     });
 
     if (error) {
-      console.error(`Contactmail kon niet worden verstuurd (${mailer.via}):`, error);
+      console.error("Contactmail kon niet worden verstuurd:", error);
       return {
         status: "error",
         message: "Versturen is niet gelukt. Probeer het later opnieuw of mail ons rechtstreeks.",
       };
     }
 
-    const { error: confirmationError } = await mailer.send({
+    const { error: confirmationError } = await resend.emails.send({
+      from,
       to: email,
       replyTo: CONTACT_EMAIL,
       subject: CONFIRMATION_SUBJECT,
@@ -74,7 +85,7 @@ export async function submitContactForm(
     });
 
     if (confirmationError) {
-      console.error(`Bevestigingsmail kon niet worden verstuurd (${mailer.via}):`, confirmationError);
+      console.error("Bevestigingsmail kon niet worden verstuurd:", confirmationError);
       return {
         status: "success",
         message: "Je aanvraag is ontvangen. De bevestigingsmail kon niet worden verstuurd, maar we nemen snel contact met je op.",
