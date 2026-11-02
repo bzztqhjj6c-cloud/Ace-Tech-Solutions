@@ -10,7 +10,7 @@ export function Footer({ settings }: { settings: SiteSettings }) {
       <Container className="grid gap-10 py-12 md:grid-cols-3">
         <div>
           <div className="font-display text-lg uppercase">{settings.bedrijfsnaam}</div>
-          <p className="eyebrow mt-3 max-w-xs opacity-70">{settings.tagline}</p>
+          <p className="eyebrow mt-3 max-w-xs opacity-70">Connecting Winners in Technology</p>
         </div>
 
         <div className="font-mono text-xs uppercase tracking-widest">

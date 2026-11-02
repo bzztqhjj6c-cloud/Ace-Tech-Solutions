@@ -75,7 +75,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={pending}
-        className="px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-[#0B2038] transition-opacity hover:opacity-90 disabled:opacity-50"
+        className="w-full cursor-pointer px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.1em] text-[#0B2038] transition-opacity hover:opacity-90 disabled:opacity-50 sm:w-auto md:text-base"
         style={PREMIUM_CTA_STYLE}
       >
         {pending ? "Versturen…" : "Verstuur bericht"}
