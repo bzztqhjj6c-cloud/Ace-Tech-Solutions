@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { CookieSettingsButton } from "@/components/CookieConsent";
 
 export const metadata: Metadata = {
   title: "Privacyverklaring | Ace Flex Solutions",
@@ -105,6 +106,7 @@ export default function PrivacyverklaringPage() {
               "Om je te bellen of te mailen over opdrachten die bij je passen",
               "Om je op te nemen in ons netwerk van ZZP'ers",
               "Om je, met jouw toestemming, voor te stellen aan opdrachtgevers",
+              "Om, met jouw toestemming, te meten hoe onze advertenties werken en ze te verbeteren (via de Meta Pixel)",
             ]}
           />
           <p>
@@ -150,14 +152,39 @@ export default function PrivacyverklaringPage() {
 
         <Section title="Cookies, of vergelijkbare technieken, die wij gebruiken">
           <p>
-            Ace Flex Solutions gebruikt alleen technische en functionele cookies. Wij gebruiken geen
-            analytische cookies, geen advertentiecookies en geen trackingtools. Een cookie is een
-            klein tekstbestand dat bij het eerste bezoek aan deze website wordt opgeslagen op jouw
-            computer, tablet of smartphone. De cookies die wij gebruiken zijn noodzakelijk voor de
-            technische werking van de website en jouw gebruiksgemak. Je kunt je afmelden voor
-            cookies door je internetbrowser zo in te stellen dat deze geen cookies meer opslaat.
-            Daarnaast kun je alle informatie die eerder is opgeslagen via de instellingen van je
-            browser verwijderen.
+            Een cookie is een klein tekstbestand dat bij het bezoek aan deze website wordt opgeslagen
+            op jouw computer, tablet of smartphone. Ace Flex Solutions gebruikt technische en
+            functionele cookies. Deze zijn noodzakelijk voor de technische werking van de website en
+            jouw gebruiksgemak, en hiervoor vragen wij geen toestemming.
+          </p>
+          <p>
+            Daarnaast gebruiken wij, alleen als je daar toestemming voor geeft, de Meta Pixel van Meta
+            (Facebook en Instagram). Hiermee meten wij hoe bezoekers via onze advertenties op de
+            website komen, zodat wij onze advertenties kunnen verbeteren en kunnen tonen aan mensen
+            voor wie ze relevant zijn. Hierbij worden cookies geplaatst en worden gegevens zoals je
+            IP-adres, de pagina&apos;s die je bezoekt en informatie over je browser en apparaat
+            gedeeld met Meta. Meta kan deze gegevens ook buiten de Europese Economische Ruimte
+            verwerken. Lees voor meer informatie het{" "}
+            <a
+              href="https://www.facebook.com/privacy/policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent underline hover:no-underline"
+            >
+              privacybeleid van Meta
+            </a>
+            .
+          </p>
+          <p>
+            Bij je eerste bezoek vragen wij om je toestemming. Geef je geen toestemming, dan wordt de
+            Meta Pixel niet geladen. Je kunt je keuze altijd wijzigen of je toestemming intrekken via{" "}
+            <CookieSettingsButton className="text-accent" />{" "}
+            onderaan elke pagina.
+          </p>
+          <p>
+            Je kunt je ook afmelden voor cookies door je internetbrowser zo in te stellen dat deze
+            geen cookies meer opslaat. Daarnaast kun je alle informatie die eerder is opgeslagen via
+            de instellingen van je browser verwijderen.
           </p>
         </Section>
 
