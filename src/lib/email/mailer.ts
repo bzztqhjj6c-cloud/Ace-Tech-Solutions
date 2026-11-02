@@ -16,59 +16,85 @@ export type Mailer = {
 };
 
 // Voorkeur: de mailserver van Mijndomein (SMTP), met de reputatie van de gewone
-// mailbox. Valt terug op Resend zolang de SMTP-gegevens niet in Vercel staan.
+// mailbox. Lukt SMTP niet (verkeerd wachtwoord, storing, geblokkeerde poort), dan
+// gaat dezelfde mail automatisch via Resend, zodat het formulier blijft werken.
 //
 // SMTP_HOST, SMTP_PORT (587 of 465), SMTP_USER, SMTP_PASSWORD, optioneel SMTP_FROM.
 // Het afzenderadres moet de mailbox zijn waarmee wordt ingelogd (bijv. info@ace-flex.nl).
-export function getMailer(): Mailer | null {
+function createSmtpMailer(): Mailer | null {
   const host = process.env.SMTP_HOST;
   const user = process.env.SMTP_USER;
   const password = process.env.SMTP_PASSWORD;
+  if (!host || !user || !password) return null;
 
-  if (host && user && password) {
-    const port = Number(process.env.SMTP_PORT || 587);
-    const transport = nodemailer.createTransport({
-      host,
-      port,
-      secure: port === 465,
-      auth: { user, pass: password },
-      connectionTimeout: 10_000,
-      greetingTimeout: 10_000,
-      socketTimeout: 20_000,
-    });
-    const from = formatSender(process.env.SMTP_FROM || user);
+  const port = Number(process.env.SMTP_PORT || 587);
+  const transport = nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465,
+    auth: { user, pass: password },
+    // Kort houden: bij een probleem moet de terugval naar Resend snel volgen.
+    connectionTimeout: 5_000,
+    greetingTimeout: 5_000,
+    socketTimeout: 10_000,
+  });
+  const from = formatSender(process.env.SMTP_FROM || user);
 
-    return {
-      via: "smtp",
-      async send(mail) {
-        try {
-          await transport.sendMail({ from, ...mail });
-          return {};
-        } catch (error) {
-          return { error };
-        }
-      },
-    };
-  }
+  return {
+    via: "smtp",
+    async send(mail) {
+      try {
+        await transport.sendMail({ from, ...mail });
+        return {};
+      } catch (error) {
+        return { error };
+      }
+    },
+  };
+}
 
+function createResendMailer(): Mailer | null {
   const apiKey = process.env.RESEND_API_KEY;
   const resendFrom = process.env.RESEND_FROM_EMAIL;
-  if (apiKey && resendFrom) {
-    const resend = new Resend(apiKey);
-    const from = formatSender(resendFrom);
+  if (!apiKey || !resendFrom) return null;
 
-    return {
-      via: "resend",
-      async send(mail) {
-        try {
-          const { error } = await resend.emails.send({ from, ...mail });
-          return error ? { error } : {};
-        } catch (error) {
-          return { error };
-        }
-      },
-    };
-  }
+  const resend = new Resend(apiKey);
+  const from = formatSender(resendFrom);
 
-  return null;
+  return {
+    via: "resend",
+    async send(mail) {
+      try {
+        const { error } = await resend.emails.send({ from, ...mail });
+        return error ? { error } : {};
+      } catch (error) {
+        return { error };
+      }
+    },
+  };
+}
+
+function describeSmtpError(error: unknown): string {
+  if (!error || typeof error !== "object") return String(error);
+  const e = error as { code?: string; responseCode?: number; command?: string; response?: string; message?: string };
+  return [e.code, e.responseCode, e.command, e.response ?? e.message].filter(Boolean).join(" | ");
+}
+
+export function getMailer(): Mailer | null {
+  const smtp = createSmtpMailer();
+  const resend = createResendMailer();
+  if (!smtp) return resend;
+  if (!resend) return smtp;
+
+  return {
+    via: "smtp",
+    async send(mail) {
+      const result = await smtp.send(mail);
+      if (!result.error) return result;
+      console.error(
+        `SMTP-verzending mislukt, terugval naar Resend (aan ${mail.to}): ${describeSmtpError(result.error)}`,
+      );
+      return resend.send(mail);
+    },
+  };
 }
