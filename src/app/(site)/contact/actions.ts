@@ -2,6 +2,12 @@
 
 import { Resend } from "resend";
 import { CONTACT_EMAIL, FORM_RECIPIENT_EMAIL } from "@/lib/contact";
+import {
+  CONFIRMATION_SUBJECT,
+  confirmationHtml,
+  confirmationText,
+  formatSender,
+} from "@/lib/email/confirmation";
 
 export type ContactFormState = {
   status: "idle" | "success" | "error";
@@ -39,13 +45,15 @@ export async function submitContactForm(
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL;
-  if (!apiKey || !from) {
+  const fromAddress = process.env.RESEND_FROM_EMAIL;
+  if (!apiKey || !fromAddress) {
     return {
       status: "error",
       message: `Online versturen is nog niet ingesteld. Mail ons rechtstreeks via ${CONTACT_EMAIL}.`,
     };
   }
+
+  const from = formatSender(fromAddress);
 
   try {
     const resend = new Resend(apiKey);
@@ -71,8 +79,9 @@ export async function submitContactForm(
       from,
       to: email,
       replyTo: CONTACT_EMAIL,
-      subject: "We hebben je bericht ontvangen | Ace Flex Solutions",
-      text: `Beste ${naam},\n\nBedankt voor je bericht aan Ace Flex Solutions. We hebben je gegevens goed ontvangen en nemen zo snel mogelijk contact met je op.\n\nMet vriendelijke groet,\nAce Flex Solutions\n${CONTACT_EMAIL}`,
+      subject: CONFIRMATION_SUBJECT,
+      text: confirmationText(naam),
+      html: confirmationHtml(naam),
     });
 
     if (confirmationError) {
