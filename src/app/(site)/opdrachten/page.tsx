@@ -19,34 +19,32 @@ export default async function OpdrachtenPage() {
         image={HERO_IMAGE}
         imageAlt="Industriële installatie met leidingen en machines"
         objectPosition="center 60%"
-        headline="Vind hier dé uitdagende opdracht die bij je past"
+        headline="Sluit aan bij het netwerk van Ace Flex Solutions"
       />
 
       <div className="border-b-2 border-line bg-panel py-16 md:py-20">
         <Container className="max-w-2xl">
-          <p className="eyebrow text-accent tracking-[0.2em]">[ ZZP opdrachten ]</p>
+          <p className="eyebrow text-accent tracking-[0.2em]">[ ZZP opdrachten en netwerk ]</p>
           <p className="mt-4 text-lg leading-relaxed opacity-90">
-            Dit zijn de opdrachten die op dit moment openstaan bij onze opdrachtgevers in de
-            procesindustrie, van storingsmonteur tot maintenance manager. Geen eindeloze
-            cv-matching, maar een kort gesprek om te kijken of het klikt.
+            Wij zoeken zelfstandige monteurs, engineers en technisch leidinggevenden voor de
+            procesindustrie. Hieronder zie je waar je op kunt reageren. Geen eindeloze cv
+            matching, maar een kort gesprek om te kijken of het klikt.
           </p>
           <p className="mt-4 text-lg leading-relaxed opacity-90">
-            Elke opdracht hieronder is vooraf met de opdrachtgever zelf doorgesproken: welke
-            installaties, welke ploegendienst, wat er precies gevraagd wordt. Geen vage
-            vacatureteksten die overal hetzelfde klinken, maar concrete informatie waarmee je
-            direct weet of het iets voor je is.
+            Staat er een opdracht bij die past? Dan hoor je snel of het een match is. Staat er
+            nog niets tussen, sluit dan aan bij ons netwerk. Komt er een opdracht die bij je
+            past, dan bellen we jou als eerste.
           </p>
           <p className="mt-4 text-lg leading-relaxed opacity-90">
-            Reageer je op een opdracht, dan hoor je snel of het een match is. Past het niet,
-            dan zeggen we dat ook gewoon. Geen stilte en geen wachten op een generiek
-            &quot;we nemen contact met je op&quot;.
+            Past het niet, dan zeggen we dat ook gewoon. Geen stilte en geen wachten op een
+            generiek &quot;we nemen contact met je op&quot;.
           </p>
           <p className="mt-4 text-lg leading-relaxed opacity-90">
-            Staat je opdracht er niet bij?{" "}
+            Wil je liever eerst even praten?{" "}
             <Link href="/contact" className="text-accent underline hover:no-underline">
-              Laat dan je contactgegevens achter
-            </Link>{" "}
-            Dan denken we graag met je mee, ook als er nu niets tussenstaat wat past.
+              Laat je contactgegevens achter
+            </Link>
+            . Dan denken we graag met je mee, ook als er nu niets tussenstaat wat past.
           </p>
         </Container>
       </div>
