@@ -29,7 +29,9 @@ export async function submitSollicitatie(
   formData: FormData,
 ): Promise<SollicitatieState> {
   const slug = formData.get("slug")?.toString() ?? "";
-  const naam = formData.get("naam")?.toString().trim() ?? "";
+  const voornaam = formData.get("voornaam")?.toString().trim() ?? "";
+  const achternaam = formData.get("achternaam")?.toString().trim() ?? "";
+  const naam = `${voornaam} ${achternaam}`.trim();
   const email = formData.get("email")?.toString().trim() ?? "";
   const telefoon = formData.get("telefoon")?.toString().trim() ?? "";
   const toelichting = formData.get("toelichting")?.toString().trim() ?? "";
@@ -44,10 +46,10 @@ export async function submitSollicitatie(
   // Honeypot: bots vullen dit verborgen veld in.
   if (website) return { status: "success", message: "Bedankt voor je sollicitatie." };
 
-  if (!naam || !email || !telefoon) {
-    return { status: "error", message: "Vul je naam, e-mailadres en telefoonnummer in." };
+  if (!voornaam || !achternaam || !email || !telefoon) {
+    return { status: "error", message: "Vul je voornaam, achternaam, e-mailadres en telefoonnummer in." };
   }
-  if (naam.length > 120 || email.length > 254 || telefoon.length > 40 || toelichting.length > 5000) {
+  if (voornaam.length > 60 || achternaam.length > 80 || email.length > 254 || telefoon.length > 40 || toelichting.length > 5000) {
     return { status: "error", message: "Een of meer velden zijn te lang." };
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
@@ -110,7 +112,8 @@ export async function submitSollicitatie(
         `Regio: ${vacature.regio}`,
         `Link: ${link}`,
         "",
-        `Naam: ${naam}`,
+        `Voornaam: ${voornaam}`,
+        `Achternaam: ${achternaam}`,
         `E-mail: ${email}`,
         `Telefoon: ${telefoon}`,
         `Adres: ${adres}`,
@@ -135,8 +138,9 @@ export async function submitSollicitatie(
       to: email,
       replyTo: CONTACT_EMAIL,
       subject: APPLICATION_CONFIRMATION_SUBJECT,
-      text: confirmationText(naam, vacature.titel),
-      html: confirmationHtml(naam, vacature.titel),
+      // Persoonlijke aanhef met alleen de voornaam: "Beste Jan,".
+      text: confirmationText(voornaam, vacature.titel),
+      html: confirmationHtml(voornaam, vacature.titel),
     });
 
     if (confirmationError) {
