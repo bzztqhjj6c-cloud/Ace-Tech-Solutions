@@ -7,6 +7,14 @@ export const vacature = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "offline",
+      title: "Offline zetten",
+      description:
+        "Zet aan en klik op Publish om deze vacature van de website te halen. Zet uit en klik op Publish om hem weer te tonen.",
+      type: "boolean",
+      initialValue: false,
+    }),
+    defineField({
       name: "titel",
       title: "Titel",
       type: "string",
@@ -68,6 +76,13 @@ export const vacature = defineType({
     }),
   ],
   preview: {
-    select: { title: "titel", subtitle: "sector" },
+    select: { title: "titel", sector: "sector", regio: "regio", offline: "offline", status: "status" },
+    prepare({ title, sector, regio, offline, status }) {
+      const labels = [offline === true ? "OFFLINE" : null, status === "vervuld" ? "Vervuld" : null].filter(Boolean);
+      return {
+        title,
+        subtitle: [labels.join(" · "), [sector, regio].filter(Boolean).join(" · ")].filter(Boolean).join(" | "),
+      };
+    },
   },
 });

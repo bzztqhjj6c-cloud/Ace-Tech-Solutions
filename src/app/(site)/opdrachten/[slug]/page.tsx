@@ -42,9 +42,6 @@ export default async function VacatureDetailPage({
           <p className="eyebrow mt-4 opacity-70">
             {vacature.functiegroep} in {vacature.regio}
         </p>
-        {vacature.isVoorbeeld && (
-          <p className="eyebrow mt-3 text-accent">[ voorbeeldvacature. Nog geen echte opdracht ]</p>
-        )}
       </div>
 
       {/* Witregels uit Sanity worden alinea's, losse enters blijven nieuwe regels. */}
