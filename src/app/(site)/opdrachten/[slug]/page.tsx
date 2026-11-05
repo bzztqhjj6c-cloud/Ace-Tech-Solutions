@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
+import { SollicitatieForm } from "@/components/SollicitatieForm";
 import { getVacatureBySlug, getVacatures } from "@/lib/vacatures";
-import { PREMIUM_CTA_STYLE } from "@/lib/premiumStyle";
+import { PREMIUM_CTA_STYLE, PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
 
 export const revalidate = 60;
 
@@ -50,13 +51,47 @@ export default async function VacatureDetailPage({
       <p className="mt-8 max-w-2xl text-lg leading-relaxed opacity-80">{vacature.beschrijving}</p>
 
       {vacature.status === "open" && (
-        <Link
-          href="/contact"
-          className="mt-10 inline-block px-6 py-3 font-mono text-xs uppercase tracking-[0.1em] text-[#0B2038] transition-opacity hover:opacity-90"
-          style={PREMIUM_CTA_STYLE}
-        >
-          Solliciteer op deze opdracht
-        </Link>
+        <>
+          <a
+            href="#solliciteren"
+            className="mt-10 inline-block px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.1em] text-[#0B2038] transition-opacity hover:opacity-90"
+            style={PREMIUM_CTA_STYLE}
+          >
+            Solliciteer op deze opdracht
+          </a>
+
+          <section
+            id="solliciteren"
+            className="mt-16 max-w-2xl scroll-mt-28 border border-accent/30 p-6 md:p-8"
+            style={PREMIUM_TILE_STYLE}
+          >
+            <p className="eyebrow text-accent tracking-[0.2em]">[ Solliciteren ]</p>
+            <h2 className="font-display mt-2 text-2xl uppercase leading-tight tracking-wide">
+              Solliciteer op deze opdracht
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed opacity-80">
+              Laat je gegevens achter, dan nemen we snel persoonlijk contact met je op. Een cv
+              meesturen mag, maar hoeft niet.
+            </p>
+            <div className="mt-6">
+              <SollicitatieForm slug={vacature.slug} titel={vacature.titel} />
+            </div>
+          </section>
+        </>
+      )}
+
+      {vacature.status !== "open" && (
+        <p className="mt-10 max-w-2xl opacity-80">
+          Deze opdracht is vervuld. Bekijk de{" "}
+          <Link href="/opdrachten" className="text-accent underline hover:no-underline">
+            actuele opdrachten
+          </Link>{" "}
+          of{" "}
+          <Link href="/contact" className="text-accent underline hover:no-underline">
+            neem contact met ons op
+          </Link>
+          .
+        </p>
       )}
     </Container>
   );
