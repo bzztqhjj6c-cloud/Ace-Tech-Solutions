@@ -58,7 +58,6 @@ export interface Vacature {
   ploegendiensten: Ploegendienst[];
   beschrijving: string;
   status: VacatureStatus;
-  isVoorbeeld?: boolean;
 }
 
 export interface SiteSettings {
