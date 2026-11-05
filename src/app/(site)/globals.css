@@ -26,6 +26,11 @@
   border-radius: var(--radius-card) !important;
 }
 
+/* De knop "Bestand kiezen" valt niet onder *, dus apart dezelfde ronde hoeken. */
+::file-selector-button {
+  border-radius: var(--radius-card) !important;
+}
+
 body {
   background-color: var(--background);
   color: var(--foreground);
