@@ -129,8 +129,8 @@ export default async function HomePage() {
           <Container>
             <div className="flex items-end justify-between gap-4">
               <div>
-                <p className="eyebrow text-accent tracking-[0.2em]">[ Openstaande opdrachten ]</p>
-                <h2 className="font-display mt-2 text-3xl uppercase tracking-wide">Actuele opdrachten</h2>
+                <p className="eyebrow text-accent tracking-[0.2em]">[ Opdrachten en netwerk ]</p>
+                <h2 className="font-display mt-2 text-3xl uppercase tracking-wide">Hier kun je op reageren</h2>
               </div>
               <Link href="/opdrachten" className="eyebrow hover:text-accent">
                 Alle opdrachten →
