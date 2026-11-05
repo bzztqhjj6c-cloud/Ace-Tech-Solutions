@@ -48,7 +48,18 @@ export default async function VacatureDetailPage({
         )}
       </div>
 
-      <p className="mt-8 max-w-2xl text-lg leading-relaxed opacity-80">{vacature.beschrijving}</p>
+      {/* Witregels uit Sanity worden alinea's, losse enters blijven nieuwe regels. */}
+      <div className="mt-8 max-w-2xl space-y-5 text-lg leading-relaxed opacity-80">
+        {(vacature.beschrijving ?? "")
+          .split(/\n\s*\n/)
+          .map((alinea) => alinea.trim())
+          .filter(Boolean)
+          .map((alinea, i) => (
+            <p key={i} className="whitespace-pre-line">
+              {alinea}
+            </p>
+          ))}
+      </div>
 
       {vacature.status === "open" && (
         <>
