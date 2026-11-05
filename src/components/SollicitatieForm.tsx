@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useActionState, useEffect, useState } from "react";
+import { AdresVelden } from "@/components/AdresVelden";
 import { submitSollicitatie, type SollicitatieState } from "@/app/(site)/opdrachten/[slug]/actions";
 import { CV_ACCEPT, CV_EXTENSIES, MAX_CV_BYTES } from "@/lib/sollicitatie";
 import { PREMIUM_CTA_STYLE, PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
@@ -53,9 +54,13 @@ export function SollicitatieForm({ slug, titel }: { slug: string; titel: string 
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="sm:col-span-2">
-          <label htmlFor="sollicitatie-naam" className="eyebrow block opacity-70">Naam</label>
-          <input id="sollicitatie-naam" name="naam" type="text" required autoComplete="name" maxLength={120} className={inputClass} />
+        <div>
+          <label htmlFor="sollicitatie-voornaam" className="eyebrow block opacity-70">Voornaam</label>
+          <input id="sollicitatie-voornaam" name="voornaam" type="text" required autoComplete="given-name" maxLength={60} className={inputClass} />
+        </div>
+        <div>
+          <label htmlFor="sollicitatie-achternaam" className="eyebrow block opacity-70">Achternaam</label>
+          <input id="sollicitatie-achternaam" name="achternaam" type="text" required autoComplete="family-name" maxLength={80} className={inputClass} />
         </div>
         <div>
           <label htmlFor="sollicitatie-email" className="eyebrow block opacity-70">E-mail</label>
@@ -66,6 +71,8 @@ export function SollicitatieForm({ slug, titel }: { slug: string; titel: string 
           <input id="sollicitatie-telefoon" name="telefoon" type="tel" required autoComplete="tel" maxLength={40} className={inputClass} />
         </div>
       </div>
+
+      <AdresVelden />
 
       <div>
         <label htmlFor="sollicitatie-toelichting" className="eyebrow block opacity-70">

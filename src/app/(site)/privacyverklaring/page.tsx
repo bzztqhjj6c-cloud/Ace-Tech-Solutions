@@ -85,7 +85,7 @@ export default function PrivacyverklaringPage() {
               "Telefoonnummer",
               "Mailadres",
               "De inhoud van je bericht als je het contactformulier op onze website gebruikt",
-              "Bij een sollicitatie via onze website: de opdracht waarop je solliciteert, je toelichting en, als je dat meestuurt, je cv",
+              "Bij een sollicitatie via onze website: je adres, de opdracht waarop je solliciteert, je toelichting en, als je dat meestuurt, je cv",
               "Je antwoorden op de vragen in ons formulier: of je als ZZP'er werkt, in welke sector je de meeste ervaring hebt, wat je vakgebied is en wat je belangrijk vindt in een opdracht",
             ]}
           />

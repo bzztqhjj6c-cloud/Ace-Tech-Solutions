@@ -8,6 +8,7 @@ import {
   confirmationText,
   formatSender,
 } from "@/lib/email/confirmation";
+import { formatAdres, isGeldigHuisnummer, normaliseerPostcode } from "@/lib/adres";
 import { CV_EXTENSIES, MAX_CV_BYTES } from "@/lib/sollicitatie";
 import { getVacatureBySlug } from "@/lib/vacatures";
 
@@ -28,25 +29,39 @@ export async function submitSollicitatie(
   formData: FormData,
 ): Promise<SollicitatieState> {
   const slug = formData.get("slug")?.toString() ?? "";
-  const naam = formData.get("naam")?.toString().trim() ?? "";
+  const voornaam = formData.get("voornaam")?.toString().trim() ?? "";
+  const achternaam = formData.get("achternaam")?.toString().trim() ?? "";
+  const naam = `${voornaam} ${achternaam}`.trim();
   const email = formData.get("email")?.toString().trim() ?? "";
   const telefoon = formData.get("telefoon")?.toString().trim() ?? "";
   const toelichting = formData.get("toelichting")?.toString().trim() ?? "";
+  const postcode = normaliseerPostcode(formData.get("postcode")?.toString() ?? "");
+  const huisnummer = formData.get("huisnummer")?.toString().trim() ?? "";
+  const toevoeging = formData.get("toevoeging")?.toString().trim() ?? "";
+  const straat = formData.get("straat")?.toString().trim() ?? "";
+  const plaats = formData.get("plaats")?.toString().trim() ?? "";
   const website = formData.get("website")?.toString().trim() ?? "";
   const cv = formData.get("cv");
 
   // Honeypot: bots vullen dit verborgen veld in.
   if (website) return { status: "success", message: "Bedankt voor je sollicitatie." };
 
-  if (!naam || !email || !telefoon) {
-    return { status: "error", message: "Vul je naam, e-mailadres en telefoonnummer in." };
+  if (!voornaam || !achternaam || !email || !telefoon) {
+    return { status: "error", message: "Vul je voornaam, achternaam, e-mailadres en telefoonnummer in." };
   }
-  if (naam.length > 120 || email.length > 254 || telefoon.length > 40 || toelichting.length > 5000) {
+  if (voornaam.length > 60 || achternaam.length > 80 || email.length > 254 || telefoon.length > 40 || toelichting.length > 5000) {
     return { status: "error", message: "Een of meer velden zijn te lang." };
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { status: "error", message: "Vul een geldig e-mailadres in." };
   }
+  if (!postcode || !isGeldigHuisnummer(huisnummer) || !straat || !plaats) {
+    return { status: "error", message: "Vul je volledige adres in (postcode, huisnummer, straat en plaats)." };
+  }
+  if (toevoeging.length > 10 || straat.length > 120 || plaats.length > 80) {
+    return { status: "error", message: "Een of meer adresvelden zijn te lang." };
+  }
+  const adres = formatAdres({ straat, huisnummer, toevoeging, postcode, plaats });
   const telefoonDigits = telefoon.replace(/\D/g, "");
   if (!/^\+?[\d\s().-]+$/.test(telefoon) || telefoonDigits.length < 8 || telefoonDigits.length > 15) {
     return { status: "error", message: "Vul een geldig telefoonnummer in." };
@@ -97,9 +112,11 @@ export async function submitSollicitatie(
         `Regio: ${vacature.regio}`,
         `Link: ${link}`,
         "",
-        `Naam: ${naam}`,
+        `Voornaam: ${voornaam}`,
+        `Achternaam: ${achternaam}`,
         `E-mail: ${email}`,
         `Telefoon: ${telefoon}`,
+        `Adres: ${adres}`,
         `Cv: ${bijlage ? `bijgevoegd (${bijlage.filename})` : "niet meegestuurd"}`,
         "",
         "Toelichting:",
@@ -121,8 +138,9 @@ export async function submitSollicitatie(
       to: email,
       replyTo: CONTACT_EMAIL,
       subject: APPLICATION_CONFIRMATION_SUBJECT,
-      text: confirmationText(naam, vacature.titel),
-      html: confirmationHtml(naam, vacature.titel),
+      // Persoonlijke aanhef met alleen de voornaam: "Beste Jan,".
+      text: confirmationText(voornaam, vacature.titel),
+      html: confirmationHtml(voornaam, vacature.titel),
     });
 
     if (confirmationError) {
