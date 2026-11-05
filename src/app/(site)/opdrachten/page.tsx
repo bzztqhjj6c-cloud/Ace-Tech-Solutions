@@ -27,8 +27,8 @@ export default async function OpdrachtenPage() {
           <p className="eyebrow text-accent tracking-[0.2em]">[ ZZP opdrachten en netwerk ]</p>
           <p className="mt-4 text-lg leading-relaxed opacity-90">
             Wij zoeken zelfstandige monteurs, engineers en technisch leidinggevenden voor de
-            procesindustrie. Hieronder zie je waar je op kunt reageren. Geen eindeloze cv
-            matching, maar een kort gesprek om te kijken of het klikt.
+            procesindustrie. Hieronder zie je waar je op kunt reageren. Geen eindeloze
+            cv-matching, maar een kort gesprek om te kijken of het klikt.
           </p>
           <p className="mt-4 text-lg leading-relaxed opacity-90">
             Staat er een opdracht bij die past? Dan hoor je snel of het een match is. Staat er
