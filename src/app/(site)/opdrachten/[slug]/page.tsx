@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
-import { SollicitatieForm } from "@/components/SollicitatieForm";
+import { Sollicitatie } from "@/components/SollicitatieForm";
 import { getVacatureBySlug, getVacatures } from "@/lib/vacatures";
-import { PREMIUM_CTA_STYLE, PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
 
 export const revalidate = 60;
 
@@ -61,35 +60,7 @@ export default async function VacatureDetailPage({
           ))}
       </div>
 
-      {vacature.status === "open" && (
-        <>
-          <a
-            href="#solliciteren"
-            className="mt-10 inline-block px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.1em] text-[#0B2038] transition-opacity hover:opacity-90"
-            style={PREMIUM_CTA_STYLE}
-          >
-            Solliciteer op deze opdracht
-          </a>
-
-          <section
-            id="solliciteren"
-            className="mt-16 max-w-2xl scroll-mt-28 border border-accent/30 p-6 md:p-8"
-            style={PREMIUM_TILE_STYLE}
-          >
-            <p className="eyebrow text-accent tracking-[0.2em]">[ Solliciteren ]</p>
-            <h2 className="font-display mt-2 text-2xl uppercase leading-tight tracking-wide">
-              Solliciteer op deze opdracht
-            </h2>
-            <p className="mt-3 text-sm leading-relaxed opacity-80">
-              Laat je gegevens achter, dan nemen we snel persoonlijk contact met je op. Een cv
-              meesturen mag, maar hoeft niet.
-            </p>
-            <div className="mt-6">
-              <SollicitatieForm slug={vacature.slug} titel={vacature.titel} />
-            </div>
-          </section>
-        </>
-      )}
+      {vacature.status === "open" && <Sollicitatie slug={vacature.slug} titel={vacature.titel} />}
 
       {vacature.status !== "open" && (
         <p className="mt-10 max-w-2xl opacity-80">

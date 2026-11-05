@@ -15,6 +15,9 @@ import { getVacatureBySlug } from "@/lib/vacatures";
 export type SollicitatieState = {
   status: "idle" | "success" | "error";
   message?: string;
+  // Alleen bij succes: voor een persoonlijke bevestiging op het scherm.
+  voornaam?: string;
+  bevestigingVerstuurd?: boolean;
 };
 
 const SITE_URL = "https://www.ace-flex.nl";
@@ -147,12 +150,16 @@ export async function submitSollicitatie(
       console.error("Bevestiging sollicitatie kon niet worden verstuurd:", confirmationError);
       return {
         status: "success",
+        voornaam,
+        bevestigingVerstuurd: false,
         message: "Je sollicitatie is ontvangen. De bevestigingsmail kon niet worden verstuurd, maar we nemen snel contact met je op.",
       };
     }
 
     return {
       status: "success",
+      voornaam,
+      bevestigingVerstuurd: true,
       message: "Bedankt voor je sollicitatie! Je krijgt een bevestiging per e-mail en we nemen snel contact met je op.",
     };
   } catch (error) {
