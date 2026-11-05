@@ -12,11 +12,20 @@ export async function getVacatures(): Promise<Vacature[]> {
   if (!sanityClient) return seedVacatures;
 
   try {
+    // Sanity levert de vacatures al van nieuw naar oud (order(_createdAt desc)).
     const vacatures = await sanityClient.fetch<Vacature[]>(vacaturesQuery, {}, SANITY_FETCH_OPTIONS);
-    const vacaturesPerSlug = new Map(
-      [...seedVacatures, ...additionalVacatures, ...vacatures].map((vacature) => [vacature.slug, vacature]),
+
+    // Nieuwste vacatures uit Sanity eerst, daarna de vaste vacatures uit de code
+    // die niet (met dezelfde slug) in Sanity staan.
+    const inSanity = new Set(vacatures.map((vacature) => vacature.slug));
+    const vasteVacatures = [...seedVacatures, ...additionalVacatures].filter(
+      (vacature, index, lijst) =>
+        !inSanity.has(vacature.slug) && lijst.findIndex((v) => v.slug === vacature.slug) === index,
     );
-    return [...vacaturesPerSlug.values()];
+    const alle = [...vacatures, ...vasteVacatures];
+
+    // Open opdrachten vóór vervulde; binnen elke groep blijft de volgorde (nieuwste eerst).
+    return [...alle.filter((v) => v.status === "open"), ...alle.filter((v) => v.status !== "open")];
   } catch {
     return seedVacatures;
   }
