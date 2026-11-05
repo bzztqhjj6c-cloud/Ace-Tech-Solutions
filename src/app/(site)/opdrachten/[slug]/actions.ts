@@ -8,6 +8,7 @@ import {
   confirmationText,
   formatSender,
 } from "@/lib/email/confirmation";
+import { formatAdres, isGeldigHuisnummer, normaliseerPostcode } from "@/lib/adres";
 import { CV_EXTENSIES, MAX_CV_BYTES } from "@/lib/sollicitatie";
 import { getVacatureBySlug } from "@/lib/vacatures";
 
@@ -32,6 +33,11 @@ export async function submitSollicitatie(
   const email = formData.get("email")?.toString().trim() ?? "";
   const telefoon = formData.get("telefoon")?.toString().trim() ?? "";
   const toelichting = formData.get("toelichting")?.toString().trim() ?? "";
+  const postcode = normaliseerPostcode(formData.get("postcode")?.toString() ?? "");
+  const huisnummer = formData.get("huisnummer")?.toString().trim() ?? "";
+  const toevoeging = formData.get("toevoeging")?.toString().trim() ?? "";
+  const straat = formData.get("straat")?.toString().trim() ?? "";
+  const plaats = formData.get("plaats")?.toString().trim() ?? "";
   const website = formData.get("website")?.toString().trim() ?? "";
   const cv = formData.get("cv");
 
@@ -47,6 +53,13 @@ export async function submitSollicitatie(
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { status: "error", message: "Vul een geldig e-mailadres in." };
   }
+  if (!postcode || !isGeldigHuisnummer(huisnummer) || !straat || !plaats) {
+    return { status: "error", message: "Vul je volledige adres in (postcode, huisnummer, straat en plaats)." };
+  }
+  if (toevoeging.length > 10 || straat.length > 120 || plaats.length > 80) {
+    return { status: "error", message: "Een of meer adresvelden zijn te lang." };
+  }
+  const adres = formatAdres({ straat, huisnummer, toevoeging, postcode, plaats });
   const telefoonDigits = telefoon.replace(/\D/g, "");
   if (!/^\+?[\d\s().-]+$/.test(telefoon) || telefoonDigits.length < 8 || telefoonDigits.length > 15) {
     return { status: "error", message: "Vul een geldig telefoonnummer in." };
@@ -100,6 +113,7 @@ export async function submitSollicitatie(
         `Naam: ${naam}`,
         `E-mail: ${email}`,
         `Telefoon: ${telefoon}`,
+        `Adres: ${adres}`,
         `Cv: ${bijlage ? `bijgevoegd (${bijlage.filename})` : "niet meegestuurd"}`,
         "",
         "Toelichting:",
