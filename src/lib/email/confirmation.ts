@@ -27,14 +27,27 @@ function escapeHtml(value: string): string {
 }
 
 export const CONFIRMATION_SUBJECT = "We hebben je bericht ontvangen | Ace Flex Solutions";
+export const APPLICATION_CONFIRMATION_SUBJECT = "We hebben je sollicitatie ontvangen | Ace Flex Solutions";
+
+function intro(vacatureTitel?: string): string {
+  return vacatureTitel
+    ? `Bedankt voor je sollicitatie op de opdracht "${vacatureTitel}". We hebben je gegevens goed ontvangen.`
+    : "Bedankt voor je bericht aan Ace Flex Solutions. We hebben je gegevens goed ontvangen.";
+}
+
+function reden(vacatureTitel?: string): string {
+  return vacatureTitel
+    ? "Je ontvangt deze e-mail omdat je via onze website op een opdracht hebt gesolliciteerd."
+    : "Je ontvangt deze e-mail omdat je het contactformulier op onze website hebt ingevuld.";
+}
 
 // Bewust zonder het bericht van de bezoeker: zo kan het formulier niet misbruikt
 // worden om willekeurige tekst naar willekeurige adressen te sturen.
-export function confirmationText(naam: string): string {
+export function confirmationText(naam: string, vacatureTitel?: string): string {
   return [
     `Beste ${naam},`,
     "",
-    "Bedankt voor je bericht aan Ace Flex Solutions. We hebben je gegevens goed ontvangen.",
+    intro(vacatureTitel),
     "",
     "Wat gebeurt er nu?",
     "We lezen je bericht en nemen zo snel mogelijk persoonlijk contact met je op, telefonisch of per e-mail.",
@@ -51,11 +64,11 @@ export function confirmationText(naam: string): string {
     "--",
     `Ace Flex Solutions | ${ADRES} | KvK ${KVK}`,
     SITE_URL.replace("https://", ""),
-    "Je ontvangt deze e-mail omdat je het contactformulier op onze website hebt ingevuld.",
+    reden(vacatureTitel),
   ].join("\n");
 }
 
-export function confirmationHtml(naam: string): string {
+export function confirmationHtml(naam: string, vacatureTitel?: string): string {
   const veiligeNaam = escapeHtml(naam);
   const link = `color:${NAVY};text-decoration:underline;`;
 
@@ -64,7 +77,7 @@ export function confirmationHtml(naam: string): string {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${CONFIRMATION_SUBJECT}</title>
+<title>${vacatureTitel ? APPLICATION_CONFIRMATION_SUBJECT : CONFIRMATION_SUBJECT}</title>
 </head>
 <body style="margin:0;padding:0;background:#F3F4F6;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#F3F4F6;">
@@ -75,7 +88,7 @@ export function confirmationHtml(naam: string): string {
 </td></tr>
 <tr><td style="padding:32px;color:${TEXT};font-size:16px;line-height:1.6;">
 <p style="margin:0 0 16px;">Beste ${veiligeNaam},</p>
-<p style="margin:0 0 16px;">Bedankt voor je bericht aan Ace Flex Solutions. We hebben je gegevens goed ontvangen.</p>
+<p style="margin:0 0 16px;">${escapeHtml(intro(vacatureTitel))}</p>
 <p style="margin:0 0 4px;font-weight:bold;color:${NAVY};">Wat gebeurt er nu?</p>
 <p style="margin:0 0 16px;">We lezen je bericht en nemen zo snel mogelijk persoonlijk contact met je op, telefonisch of per e-mail.</p>
 <p style="margin:0 0 24px;">Heb je in de tussentijd een vraag? Bel ons op <a href="tel:${TELEFOON_LINK}" style="${link}">${TELEFOON_WEERGAVE}</a> of mail naar <a href="mailto:${CONTACT_EMAIL}" style="${link}">${CONTACT_EMAIL}</a>.</p>
@@ -89,7 +102,7 @@ export function confirmationHtml(naam: string): string {
 <tr><td style="padding:20px 32px;background:#F9FAFB;border-top:1px solid #E5E7EB;color:${MUTED};font-size:12px;line-height:1.5;">
 Ace Flex Solutions | ${ADRES} | KvK ${KVK}<br>
 <a href="${SITE_URL}" style="color:${MUTED};">www.ace-flex.nl</a> | <a href="${SITE_URL}/privacyverklaring" style="color:${MUTED};">Privacyverklaring</a><br>
-Je ontvangt deze e-mail omdat je het contactformulier op onze website hebt ingevuld.
+${escapeHtml(reden(vacatureTitel))}
 </td></tr>
 </table>
 </td></tr>
