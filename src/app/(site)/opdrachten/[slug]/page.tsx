@@ -89,8 +89,12 @@ export default async function VacatureDetailPage({
 
   return (
     <Container className="py-16 md:py-24">
-      {/* Alleen voor open opdrachten: vervulde vacatures zijn geen vacature meer. */}
-      {vacature.status === "open" && <JsonLd data={jobPostingSchema(vacature)} />}
+      {/* Google Jobs alleen voor echte, openstaande opdrachten (vinkje "Concrete
+          opdracht" in de Studio). Wervingsvacatures en vervulde vacatures niet:
+          Google Jobs staat alleen echte vacatures toe. */}
+      {vacature.status === "open" && vacature.concreteOpdracht === true && (
+        <JsonLd data={jobPostingSchema(vacature)} />
+      )}
 
       <Link href="/opdrachten" className="eyebrow hover:text-accent">
         ← Alle opdrachten

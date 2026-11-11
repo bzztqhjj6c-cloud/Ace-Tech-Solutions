@@ -10,6 +10,7 @@ export const vacaturesQuery = groq`*[_type == "vacature" && offline != true] | o
   ploegendiensten,
   beschrijving,
   status,
+  concreteOpdracht,
   "geplaatst": _createdAt
 }`;
 
@@ -23,6 +24,7 @@ export const vacatureBySlugQuery = groq`*[_type == "vacature" && offline != true
   ploegendiensten,
   beschrijving,
   status,
+  concreteOpdracht,
   "geplaatst": _createdAt
 }`;
 

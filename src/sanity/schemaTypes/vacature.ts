@@ -15,6 +15,14 @@ export const vacature = defineType({
       initialValue: false,
     }),
     defineField({
+      name: "concreteOpdracht",
+      title: "Concrete opdracht (tonen in Google Jobs)",
+      description:
+        "Alleen aanzetten bij een echte, openstaande opdracht. Dan wordt deze vacature aangeboden aan Google Jobs. Uit laten bij wervingsvacatures voor je netwerk: die blijven gewoon op de site en in de gewone zoekresultaten.",
+      type: "boolean",
+      initialValue: false,
+    }),
+    defineField({
       name: "titel",
       title: "Titel",
       type: "string",
@@ -76,9 +84,13 @@ export const vacature = defineType({
     }),
   ],
   preview: {
-    select: { title: "titel", sector: "sector", regio: "regio", offline: "offline", status: "status" },
-    prepare({ title, sector, regio, offline, status }) {
-      const labels = [offline === true ? "OFFLINE" : null, status === "vervuld" ? "Vervuld" : null].filter(Boolean);
+    select: { title: "titel", sector: "sector", regio: "regio", offline: "offline", status: "status", concreet: "concreteOpdracht" },
+    prepare({ title, sector, regio, offline, status, concreet }) {
+      const labels = [
+        offline === true ? "OFFLINE" : null,
+        status === "vervuld" ? "Vervuld" : null,
+        concreet === true ? "Google Jobs" : null,
+      ].filter(Boolean);
       return {
         title,
         subtitle: [labels.join(" · "), [sector, regio].filter(Boolean).join(" · ")].filter(Boolean).join(" | "),
