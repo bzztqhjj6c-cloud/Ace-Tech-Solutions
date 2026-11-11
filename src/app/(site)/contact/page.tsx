@@ -36,8 +36,8 @@ export default async function ContactPage() {
             <Image
               src={AANSPREEKPUNT.foto}
               alt={AANSPREEKPUNT.alt}
-              width={1125}
-              height={1406}
+              width={900}
+              height={1125}
               sizes="80px"
               className="h-24 w-20 shrink-0 border border-accent/30 object-cover object-top"
             />

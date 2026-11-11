@@ -17,8 +17,8 @@ export function Aanspreekpunt({ email, telefoon }: { email: string; telefoon: st
           <Image
             src={AANSPREEKPUNT.foto}
             alt={AANSPREEKPUNT.alt}
-            width={1125}
-            height={1406}
+            width={900}
+            height={1125}
             sizes="(min-width: 768px) 340px, 100vw"
             className="h-auto w-full max-w-sm border border-accent/30"
           />
