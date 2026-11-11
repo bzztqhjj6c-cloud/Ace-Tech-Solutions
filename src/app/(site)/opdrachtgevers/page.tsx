@@ -75,7 +75,7 @@ export default async function OpdrachtgeversPage() {
             <p>
               We plaatsen ervaren technici bij bedrijven in de voedingsmiddelenindustrie,
               kunststofindustrie, glasindustrie, verpakkingsindustrie, kartonindustrie, energiesector,
-              steenindustrie en procesindustrie in de Randstad, Rijnmond en Noord-Brabant. Niet als
+              steenindustrie en procesindustrie in West-Nederland. Niet als
               noodgreep, maar als serieuze versterking van je technische dienst: om een gat op te
               vangen, een team tijdelijk op sterkte te brengen, of structureel meer capaciteit en
               kennis in huis te halen. Ook technische projecten pakken we op, van modificaties
