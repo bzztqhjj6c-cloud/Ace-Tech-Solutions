@@ -61,7 +61,7 @@ export interface Vacature {
   ploegendiensten: Ploegendienst[];
   beschrijving: string;
   status: VacatureStatus;
-  // Moment waarop de vacature in de Studio is aangemaakt (ISO-datum uit Sanity).
+  // "Geplaatst op" uit de Studio, of anders de aanmaakdatum (ISO-datum uit Sanity).
   geplaatst?: string;
   // Echte, openstaande opdracht: alleen dan JobPosting-gegevens voor Google Jobs.
   concreteOpdracht?: boolean;

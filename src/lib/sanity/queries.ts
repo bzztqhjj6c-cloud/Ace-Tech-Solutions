@@ -1,6 +1,6 @@
 import groq from "groq";
 
-export const vacaturesQuery = groq`*[_type == "vacature" && offline != true] | order(_createdAt desc){
+export const vacaturesQuery = groq`*[_type == "vacature" && offline != true] | order(coalesce(geplaatstOp, _createdAt) desc){
   "slug": slug.current,
   titel,
   functiegroep,
@@ -13,7 +13,7 @@ export const vacaturesQuery = groq`*[_type == "vacature" && offline != true] | o
   beschrijving,
   status,
   concreteOpdracht,
-  "geplaatst": _createdAt
+  "geplaatst": coalesce(geplaatstOp, _createdAt)
 }`;
 
 export const vacatureBySlugQuery = groq`*[_type == "vacature" && offline != true && slug.current == $slug][0]{
@@ -29,7 +29,7 @@ export const vacatureBySlugQuery = groq`*[_type == "vacature" && offline != true
   beschrijving,
   status,
   concreteOpdracht,
-  "geplaatst": _createdAt
+  "geplaatst": coalesce(geplaatstOp, _createdAt)
 }`;
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]{
