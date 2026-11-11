@@ -58,6 +58,8 @@ export interface Vacature {
   ploegendiensten: Ploegendienst[];
   beschrijving: string;
   status: VacatureStatus;
+  // Moment waarop de vacature in de Studio is aangemaakt (ISO-datum uit Sanity).
+  geplaatst?: string;
 }
 
 export interface SiteSettings {

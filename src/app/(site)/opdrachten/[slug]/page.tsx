@@ -36,9 +36,8 @@ export async function generateMetadata({
   });
 }
 
-// JobPosting-schema met alleen gegevens die op de pagina staan. Ontbrekend
-// (want niet op de pagina): datePosted, jobLocation.address.addressCountry,
-// validThrough en baseSalary (er staat geen tarief op de pagina).
+// JobPosting-schema met alleen gegevens die op de pagina staan. Niet opgenomen
+// (want niet op de pagina): validThrough en baseSalary (er staat geen tarief).
 function jobPostingSchema(vacature: Vacature) {
   return {
     "@context": "https://schema.org",
@@ -46,6 +45,8 @@ function jobPostingSchema(vacature: Vacature) {
     title: vacature.titel,
     ...(vacature.beschrijving ? { description: vacature.beschrijving } : {}),
     url: `${SITE_URL}/opdrachten/${vacature.slug}`,
+    // "Geplaatst op" staat op de pagina (datum uit Sanity).
+    ...(vacature.geplaatst ? { datePosted: vacature.geplaatst } : {}),
     employmentType: "CONTRACTOR",
     industry: vacature.brancheTitel ?? vacature.sector,
     hiringOrganization: {
@@ -56,11 +57,22 @@ function jobPostingSchema(vacature: Vacature) {
     },
     jobLocation: {
       "@type": "Place",
-      address: { "@type": "PostalAddress", addressRegion: vacature.regio },
+      // Regio en land staan op de pagina: "<functiegroep> in <regio>, Nederland".
+      address: { "@type": "PostalAddress", addressRegion: vacature.regio, addressCountry: "NL" },
     },
     // Er staat een sollicitatieformulier op de pagina zelf.
     directApply: true,
   };
+}
+
+// "5 november 2026", in Nederlandse tijd.
+function formatDatum(iso: string): string {
+  return new Intl.DateTimeFormat("nl-NL", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "Europe/Amsterdam",
+  }).format(new Date(iso));
 }
 
 export default async function VacatureDetailPage({
@@ -93,8 +105,14 @@ export default async function VacatureDetailPage({
         </h1>
           <p className="eyebrow mt-4 opacity-70">({brancheLabel})</p>
           <p className="eyebrow mt-4 opacity-70">
-            {vacature.functiegroep} in {vacature.regio}
+            {vacature.functiegroep} in {vacature.regio}, Nederland
         </p>
+        {vacature.geplaatst && (
+          <p className="eyebrow mt-4 opacity-70">
+            Geplaatst op{" "}
+            <time dateTime={vacature.geplaatst}>{formatDatum(vacature.geplaatst)}</time>
+          </p>
+        )}
       </div>
 
       {/* Witregels uit Sanity worden alinea's, losse enters blijven nieuwe regels. */}
