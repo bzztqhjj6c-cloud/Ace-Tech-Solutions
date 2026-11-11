@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { Veelgesteld, type VraagAntwoord } from "@/components/Veelgesteld";
 import { pageMetadata } from "@/lib/seo";
 import { PhotoHero } from "@/components/PhotoHero";
 import { PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
@@ -16,6 +17,39 @@ const WAAROM_ACE_FLEX = [
   ["ÉÉN vast aanspreekpunt", "Je schakelt met dezelfde persoon, geen wisselend accountteam."],
   ["Matching op vakgebied", "We luisteren eerst naar wat er speelt en matchen op basis daarvan. Dat scheelt inwerktijd en misverstanden."],
   ["Zelfstandige professionals", "Onze technici zijn gewend zelfstandig te werken, zonder dat je ze aan de hand hoeft te nemen."],
+];
+
+const VRAGEN_OPDRACHTGEVERS: VraagAntwoord[] = [
+  {
+    vraag: "Wanneer kan ik bij jullie terecht?",
+    antwoord:
+      "Bij een storing, onderhoud of een structureel tekort aan technisch personeel. Als vervanging bij ziekte of verlof, als aanvulling op je team of voor een tijdelijk project. Ook technische projecten pakken we op, van modificaties tot onderhoudsstops.",
+  },
+  {
+    vraag: "Hoe zorgen jullie voor een goede match?",
+    antwoord:
+      "We luisteren eerst naar wat er speelt en matchen op basis daarvan. Dat scheelt inwerktijd en misverstanden.",
+  },
+  {
+    vraag: "Moet ik de technici begeleiden?",
+    antwoord:
+      "Nee. Onze technici zijn gewend zelfstandig te werken, zonder dat je ze aan de hand hoeft te nemen.",
+  },
+  {
+    vraag: "Met wie heb ik contact?",
+    antwoord:
+      "Met één vast aanspreekpunt. Je schakelt met dezelfde persoon, geen wisselend accountteam.",
+  },
+  {
+    vraag: "In welke sectoren en regio werken jullie?",
+    antwoord:
+      "In de voedingsmiddelenindustrie, kunststofindustrie, glasindustrie, verpakkingsindustrie, kartonindustrie, energiesector, steenindustrie en procesindustrie in West-Nederland.",
+  },
+  {
+    vraag: "Wat voor technici leveren jullie?",
+    antwoord:
+      "Vakmensen met jarenlange ervaring in de procesindustrie: storingsmonteurs, onderhoudsmonteurs, engineers, hoofden technische dienst en werkvoorbereiders, die de branche kennen, snel schakelen en zich zelfstandig staande houden op de vloer.",
+  },
 ];
 
 export const metadata = pageMetadata({
@@ -101,6 +135,8 @@ export default async function OpdrachtgeversPage() {
           </div>
         </Container>
       </div>
+
+      <Veelgesteld titel="Vragen van opdrachtgevers" items={VRAGEN_OPDRACHTGEVERS} />
 
       <div className="bg-panel py-16 md:py-24">
         <Container>

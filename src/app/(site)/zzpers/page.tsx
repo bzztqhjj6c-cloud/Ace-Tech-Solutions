@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Veelgesteld, type VraagAntwoord } from "@/components/Veelgesteld";
 import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/Container";
 import { PhotoHero } from "@/components/PhotoHero";
@@ -24,6 +25,44 @@ const ZO_WERKT_HET = [
   ["App, bel of mail", "Kies zelf hoe je contact opneemt."],
   ["Je hoort snel iets terug", "Meestal dezelfde dag nog."],
   ["Aan de slag, op jouw voorwaarden", "Simpel!"],
+];
+
+const VRAGEN_ZZP: VraagAntwoord[] = [
+  {
+    vraag: "Hoe vaak word ik uitbetaald?",
+    antwoord:
+      "Wekelijks. Je weet vooraf waar je aan toe bent, zonder verborgen inhoudingen.",
+  },
+  {
+    vraag: "Welk tarief krijg ik?",
+    antwoord:
+      "Een marktconform tarief. Je weet vooraf waar je aan toe bent: geen verborgen inhoudingen en geen bemiddelaar die aan beide kanten meesnoept.",
+  },
+  {
+    vraag: "Met wie heb ik contact?",
+    antwoord:
+      "Met één vast aanspreekpunt. Je schakelt met dezelfde persoon en niet met een wisselend accountteam of een callcenter vol onbekenden.",
+  },
+  {
+    vraag: "Voor welke functies zoeken jullie zzp'ers?",
+    antwoord:
+      "Storingsmonteurs en onderhoudsmonteurs (elektrotechnisch, mechanisch en allround), engineers, hoofden technische dienst en werkvoorbereiders, voor opdrachten in de procesindustrie en aanverwante sectoren in West-Nederland.",
+  },
+  {
+    vraag: "Hoe snel hoor ik iets?",
+    antwoord:
+      "Meestal dezelfde dag nog. Past het niet, dan zeggen we dat ook gewoon. Geen weken wachten op een antwoord dat niet komt.",
+  },
+  {
+    vraag: "Er staat nu geen opdracht tussen die bij mij past. Wat nu?",
+    antwoord:
+      "Laat je gegevens achter en sluit aan bij ons netwerk. Komt er een opdracht die bij je past, dan bellen we jou als eerste.",
+  },
+  {
+    vraag: "Hoe neem ik contact op?",
+    antwoord:
+      "Zoals jij wilt: app, bel of mail, of laat je gegevens achter via het formulier op de site.",
+  },
 ];
 
 export const metadata = pageMetadata({
@@ -118,6 +157,8 @@ export default function ZzpersPage() {
           </ScrollReveal>
         </div>
       </Container>
+
+      <Veelgesteld titel="Vragen van zzp'ers" items={VRAGEN_ZZP} />
 
       <div className="bg-panel py-16 md:py-24">
         <Container>
