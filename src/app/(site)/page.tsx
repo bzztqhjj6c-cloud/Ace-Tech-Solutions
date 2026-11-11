@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { LOGO_URL, SITE_URL, pageMetadata } from "@/lib/seo";
+import { LINKEDIN_URL, LOGO_URL, SITE_URL, pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/Container";
 import { VacatureCard } from "@/components/VacatureCard";
 import { PhotoHero } from "@/components/PhotoHero";
@@ -45,6 +45,8 @@ export default async function HomePage() {
     email: settings.contact.email,
     telephone: settings.contact.telefoon,
     address: settings.contact.adres,
+    // Andere profielen van hetzelfde bedrijf, zodat Google ze aan elkaar koppelt.
+    sameAs: [LINKEDIN_URL],
   };
 
   return (

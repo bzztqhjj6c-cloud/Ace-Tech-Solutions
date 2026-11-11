@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { CookieSettingsButton } from "@/components/CookieConsent";
+import { LINKEDIN_URL } from "@/lib/seo";
 import { SECTOREN } from "@/lib/types";
 import type { SiteSettings } from "@/lib/types";
 
@@ -39,6 +40,11 @@ export function Footer({ settings }: { settings: SiteSettings }) {
               <Link href="/contact" className="hover:text-accent">
                 Neem contact op →
               </Link>
+            </li>
+            <li>
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
+                Volg ons op LinkedIn →
+              </a>
             </li>
           </ul>
         </div>

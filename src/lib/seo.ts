@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 export const SITE_URL = "https://www.ace-flex.nl";
 export const SITE_NAME = "Ace Flex Solutions";
+export const LINKEDIN_URL = "https://www.linkedin.com/company/ace-flex-solutions/";
 // Logo uit /public, als absolute URL voor structured data.
 export const LOGO_URL = `${SITE_URL}/ace-flex-logo-staand-bron.png`;
 
