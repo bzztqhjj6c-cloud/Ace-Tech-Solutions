@@ -27,6 +27,15 @@ export const vacature = defineType({
       initialValue: false,
     }),
     defineField({
+      name: "geplaatstOp",
+      title: "Geplaatst op",
+      description:
+        "Staat op de vacaturepagina en bepaalt de volgorde: de nieuwste datum staat bovenaan. Wil je deze vacature bovenaan? Zet de datum op vandaag en klik op Publish. Leeg = de datum waarop de vacature is aangemaakt.",
+      type: "datetime",
+      initialValue: () => new Date().toISOString(),
+      options: { dateFormat: "D MMMM YYYY", timeFormat: "HH:mm" },
+    }),
+    defineField({
       name: "titel",
       title: "Titel",
       type: "string",
