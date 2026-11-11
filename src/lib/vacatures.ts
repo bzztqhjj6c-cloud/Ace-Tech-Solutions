@@ -34,7 +34,7 @@ export async function getVacatures(): Promise<Vacature[]> {
   if (!sanityClient) return [];
 
   try {
-    // Sanity levert eerst de vacatures met "Bovenaan zetten", daarna van nieuw naar oud.
+    // Sanity levert de vacatures al van nieuw naar oud (order(_createdAt desc)).
     const vacatures = (await sanityClient.fetch<SanityVacature[]>(vacaturesQuery, {}, SANITY_FETCH_OPTIONS)).map(
       normaliseer,
     );

@@ -19,14 +19,6 @@ export const vacature = defineType({
       initialValue: false,
     }),
     defineField({
-      name: "bovenaan",
-      title: "Bovenaan zetten",
-      description:
-        "Aan: deze vacature staat bovenaan het overzicht en op de homepage, boven nieuwere vacatures. Staan er meerdere aan, dan staat de nieuwste daarvan bovenaan.",
-      type: "boolean",
-      initialValue: false,
-    }),
-    defineField({
       name: "concreteOpdracht",
       title: "Concrete opdracht (tonen in Google Jobs)",
       description:
@@ -135,14 +127,12 @@ export const vacature = defineType({
       offline: "offline",
       status: "status",
       concreet: "concreteOpdracht",
-      bovenaan: "bovenaan",
     },
-    prepare({ title, sector, sectoren, regio, regios, offline, status, concreet, bovenaan }) {
+    prepare({ title, sector, sectoren, regio, regios, offline, status, concreet }) {
       const sectorTekst = (sectoren as string[] | undefined)?.length ? (sectoren as string[]).join(", ") : sector;
       const regioTekst = (regios as string[] | undefined)?.length ? (regios as string[]).join(", ") : regio;
       const labels = [
         offline === true ? "OFFLINE" : null,
-        bovenaan === true ? "Bovenaan" : null,
         status === "vervuld" ? "Vervuld" : null,
         concreet === true ? "Google Jobs" : null,
       ].filter(Boolean);

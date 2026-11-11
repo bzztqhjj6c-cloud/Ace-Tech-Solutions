@@ -1,6 +1,6 @@
 import groq from "groq";
 
-export const vacaturesQuery = groq`*[_type == "vacature" && offline != true] | order(coalesce(bovenaan, false) desc, _createdAt desc){
+export const vacaturesQuery = groq`*[_type == "vacature" && offline != true] | order(_createdAt desc){
   "slug": slug.current,
   titel,
   functiegroep,
