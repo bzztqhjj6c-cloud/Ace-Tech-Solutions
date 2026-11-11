@@ -53,10 +53,22 @@ const ICONS: Record<Sector, React.ReactNode> = {
       <polyline points="10,8 16,8 16,14" />
     </svg>
   ),
-  Steen: (
+  Bouwmaterialen: (
     <svg {...ICON_PROPS}>
       <polygon points="12,3 18,9 15,21 9,21 6,9" />
       <line x1="6" y1="9" x2="18" y2="9" />
+    </svg>
+  ),
+  Farma: (
+    <svg {...ICON_PROPS}>
+      <rect x="4" y="9" width="16" height="6" rx="3" transform="rotate(-45 12 12)" />
+      <line x1="9.5" y1="9.5" x2="14.5" y2="14.5" />
+    </svg>
+  ),
+  Machinebouw: (
+    <svg {...ICON_PROPS}>
+      <circle cx="12" cy="12" r="3" />
+      <polygon points="12,3 14,6 18.5,5.5 18,10 21,12 18,14 18.5,18.5 14,18 12,21 10,18 5.5,18.5 6,14 3,12 6,10 5.5,5.5 10,6" />
     </svg>
   ),
   Proces: (

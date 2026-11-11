@@ -4,7 +4,7 @@ import { LOGO_URL, SITE_URL, pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/Container";
 import { VacatureCard } from "@/components/VacatureCard";
 import { PhotoHero } from "@/components/PhotoHero";
-import { FUNCTIEGROEPEN, SECTOREN } from "@/lib/types";
+import { FUNCTIEGROEPEN, SECTOREN, SECTOR_UITLEG } from "@/lib/types";
 import { getSiteSettings } from "@/lib/settings";
 import { getVacatures } from "@/lib/vacatures";
 import { SectorIcon } from "@/components/SectorIcon";
@@ -118,6 +118,11 @@ export default async function HomePage() {
                       </>
                     ) : (
                       s
+                    )}
+                    {SECTOR_UITLEG[s] && (
+                      <span className="mt-1 block font-sans text-xs normal-case tracking-normal opacity-70">
+                        {SECTOR_UITLEG[s]}
+                      </span>
                     )}
                   </span>
                 </div>

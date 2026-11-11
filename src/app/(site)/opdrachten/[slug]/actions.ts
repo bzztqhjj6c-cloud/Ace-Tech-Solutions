@@ -11,6 +11,7 @@ import {
 import { formatAdres, isGeldigHuisnummer, normaliseerPostcode } from "@/lib/adres";
 import { CV_EXTENSIES, MAX_CV_BYTES } from "@/lib/sollicitatie";
 import { getVacatureBySlug } from "@/lib/vacatures";
+import { brancheTekst, regioTekst } from "@/lib/vacature-weergave";
 
 export type SollicitatieState = {
   status: "idle" | "success" | "error";
@@ -106,13 +107,13 @@ export async function submitSollicitatie(
       to: FORM_RECIPIENT_EMAIL,
       // Geen replyTo naar de sollicitant: een Reply-To op een ander domein laat de
       // spamfilter van de mailhost deze mail als spam markeren (SPOOF_REPLYTO).
-      subject: `Sollicitatie: ${vacature.titel} (${vacature.regio}) - ${naam}`,
+      subject: `Sollicitatie: ${vacature.titel} (${regioTekst(vacature)}) - ${naam}`,
       text: [
         `Reageren? Mail naar ${email} of bel ${telefoon}.`,
         "",
         `Opdracht: ${vacature.titel}`,
-        `Sector: ${vacature.brancheTitel ?? vacature.sector}`,
-        `Regio: ${vacature.regio}`,
+        `Sector: ${brancheTekst(vacature)}`,
+        `Regio: ${regioTekst(vacature)}`,
         `Link: ${link}`,
         "",
         `Voornaam: ${voornaam}`,

@@ -69,7 +69,7 @@ export function OpdrachtenBrowser({ vacatures }: { vacatures: Vacature[] }) {
 
   const filtered = useMemo(() => {
     return vacatures.filter((v) => {
-      if (regios.length && !regios.includes(v.regio)) return false;
+      if (regios.length && !v.regios.some((r) => regios.includes(r))) return false;
       if (diensten.length && !v.ploegendiensten?.some((d) => diensten.includes(d))) return false;
       if (functies.length && !functies.includes(v.functiegroep)) return false;
       return true;

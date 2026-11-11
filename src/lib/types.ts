@@ -1,4 +1,6 @@
 export const FUNCTIEGROEPEN = [
+  "Storingsmonteur",
+  "Onderhoudsmonteur",
   "Engineer",
   "Hoofd technische dienst",
   "Monteur Allround",
@@ -18,11 +20,18 @@ export const SECTOREN = [
   "Verpakkingen",
   "Karton",
   "Energie",
-  "Steen",
+  "Bouwmaterialen",
+  "Farma",
+  "Machinebouw",
   "Proces",
 ] as const;
 
 export type Sector = (typeof SECTOREN)[number];
+
+// Uitgebreide naam waar ruimte is (Studio, tegel op de homepage).
+export const SECTOR_UITLEG: Partial<Record<Sector, string>> = {
+  Bouwmaterialen: "steen, cement en beton",
+};
 
 export const REGIOS = [
   "Drenthe",
@@ -51,10 +60,11 @@ export interface Vacature {
   slug: string;
   titel: string;
   functiegroep: Functiegroep;
-  sector: Sector;
   brancheTitel?: string;
-  regio: Regio;
-  regios?: Regio[];
+  // Altijd gevuld na het ophalen (lib/vacatures.ts): oude vacatures hebben één
+  // regio/sector, wervingspagina's kunnen er meerdere hebben.
+  regios: Regio[];
+  sectoren: Sector[];
   ploegendiensten: Ploegendienst[];
   beschrijving: string;
   status: VacatureStatus;

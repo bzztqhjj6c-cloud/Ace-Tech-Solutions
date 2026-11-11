@@ -1,5 +1,14 @@
 import { defineField, defineType } from "sanity";
-import { FUNCTIEGROEPEN, PLOEGENDIENSTEN, REGIOS, SECTOREN } from "@/lib/types";
+import { FUNCTIEGROEPEN, PLOEGENDIENSTEN, REGIOS, SECTOREN, SECTOR_UITLEG } from "@/lib/types";
+
+const SECTOR_OPTIES = SECTOREN.map((value) => ({
+  value,
+  title: SECTOR_UITLEG[value] ? `${value} (${SECTOR_UITLEG[value]})` : value,
+}));
+
+// Oude vacatures hebben één regio/sector; die velden blijven zichtbaar zolang ze
+// gevuld zijn. Nieuwe vacatures gebruiken "Regio's" en "Sectoren".
+type DocMetLocatie = { regio?: string; regios?: string[]; sector?: string; sectoren?: string[] };
 
 export const vacature = defineType({
   name: "vacature",
@@ -43,11 +52,26 @@ export const vacature = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "sectoren",
+      title: "Sectoren",
+      description: "Eén of meer sectoren. Bij een wervingspagina vink je alle sectoren aan waarin je deze functie plaatst.",
+      type: "array",
+      of: [{ type: "string" }],
+      options: { list: SECTOR_OPTIES, layout: "grid" },
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          (value as string[] | undefined)?.length || (context.document as DocMetLocatie)?.sector
+            ? true
+            : "Kies minstens één sector.",
+        ),
+    }),
+    defineField({
       name: "sector",
-      title: "Sector",
+      title: "Sector (oud veld)",
+      description: "Oud veld met één sector. Gebruik bij voorkeur Sectoren hierboven en maak dit veld daarna leeg.",
       type: "string",
-      options: { list: [...SECTOREN] },
-      validation: (rule) => rule.required(),
+      options: { list: [...SECTOREN, "Steen"] },
+      hidden: ({ value }) => !value,
     }),
     defineField({
       name: "brancheTitel",
@@ -56,11 +80,26 @@ export const vacature = defineType({
       description: "De naam die onder de vacaturetitel op de website verschijnt.",
     }),
     defineField({
+      name: "regios",
+      title: "Regio's",
+      description: "Eén of meer regio's. Bij een concrete opdracht alleen de regio waar het werk is.",
+      type: "array",
+      of: [{ type: "string" }],
+      options: { list: [...REGIOS], layout: "grid" },
+      validation: (rule) =>
+        rule.custom((value, context) =>
+          (value as string[] | undefined)?.length || (context.document as DocMetLocatie)?.regio
+            ? true
+            : "Kies minstens één regio.",
+        ),
+    }),
+    defineField({
       name: "regio",
-      title: "Regio",
+      title: "Regio (oud veld)",
+      description: "Oud veld met één regio. Gebruik bij voorkeur Regio's hierboven en maak dit veld daarna leeg.",
       type: "string",
       options: { list: [...REGIOS] },
-      validation: (rule) => rule.required(),
+      hidden: ({ value }) => !value,
     }),
     defineField({
       name: "ploegendiensten",
@@ -84,8 +123,19 @@ export const vacature = defineType({
     }),
   ],
   preview: {
-    select: { title: "titel", sector: "sector", regio: "regio", offline: "offline", status: "status", concreet: "concreteOpdracht" },
-    prepare({ title, sector, regio, offline, status, concreet }) {
+    select: {
+      title: "titel",
+      sector: "sector",
+      sectoren: "sectoren",
+      regio: "regio",
+      regios: "regios",
+      offline: "offline",
+      status: "status",
+      concreet: "concreteOpdracht",
+    },
+    prepare({ title, sector, sectoren, regio, regios, offline, status, concreet }) {
+      const sectorTekst = (sectoren as string[] | undefined)?.length ? (sectoren as string[]).join(", ") : sector;
+      const regioTekst = (regios as string[] | undefined)?.length ? (regios as string[]).join(", ") : regio;
       const labels = [
         offline === true ? "OFFLINE" : null,
         status === "vervuld" ? "Vervuld" : null,
@@ -93,7 +143,7 @@ export const vacature = defineType({
       ].filter(Boolean);
       return {
         title,
-        subtitle: [labels.join(" · "), [sector, regio].filter(Boolean).join(" · ")].filter(Boolean).join(" | "),
+        subtitle: [labels.join(" · "), [sectorTekst, regioTekst].filter(Boolean).join(" · ")].filter(Boolean).join(" | "),
       };
     },
   },
