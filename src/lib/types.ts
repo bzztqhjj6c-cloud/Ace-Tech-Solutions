@@ -20,18 +20,11 @@ export const SECTOREN = [
   "Verpakkingen",
   "Karton",
   "Energie",
-  "Bouwmaterialen",
-  "Farma",
-  "Machinebouw",
+  "Steen",
   "Proces",
 ] as const;
 
 export type Sector = (typeof SECTOREN)[number];
-
-// Uitgebreide naam waar ruimte is (Studio, tegel op de homepage).
-export const SECTOR_UITLEG: Partial<Record<Sector, string>> = {
-  Bouwmaterialen: "steen, cement en beton",
-};
 
 export const REGIOS = [
   "Drenthe",

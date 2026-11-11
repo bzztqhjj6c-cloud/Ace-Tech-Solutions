@@ -1,4 +1,4 @@
-import { SECTOR_UITLEG, type Sector, type Vacature } from "@/lib/types";
+import type { Vacature } from "@/lib/types";
 
 // "A", "A en B", "A, B en C"
 export function opsomming(items: string[]): string {
@@ -12,9 +12,4 @@ export function regioTekst(vacature: Vacature): string {
 
 export function brancheTekst(vacature: Vacature): string {
   return vacature.brancheTitel ?? opsomming(vacature.sectoren);
-}
-
-export function sectorMetUitleg(sector: Sector): string {
-  const uitleg = SECTOR_UITLEG[sector];
-  return uitleg ? `${sector} (${uitleg})` : sector;
 }

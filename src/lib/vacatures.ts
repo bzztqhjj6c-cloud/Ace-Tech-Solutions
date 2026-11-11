@@ -11,9 +11,6 @@ type SanityVacature = Omit<Vacature, "regios" | "sectoren"> & {
   sectoren?: string[];
 };
 
-// "Steen" is opgegaan in "Bouwmaterialen" (steen, cement en beton).
-const OUDE_SECTOREN: Record<string, Sector> = { Steen: "Bouwmaterialen" };
-
 function normaliseer(raw: SanityVacature): Vacature {
   const { regio, regios, sector, sectoren, ...rest } = raw;
   const regioLijst = (regios?.length ? regios : regio ? [regio] : []).filter((r): r is Regio =>
@@ -22,7 +19,6 @@ function normaliseer(raw: SanityVacature): Vacature {
   const sectorLijst = [
     ...new Set(
       (sectoren?.length ? sectoren : sector ? [sector] : [])
-        .map((s) => OUDE_SECTOREN[s] ?? s)
         .filter((s): s is Sector => (SECTOREN as readonly string[]).includes(s)),
     ),
   ];

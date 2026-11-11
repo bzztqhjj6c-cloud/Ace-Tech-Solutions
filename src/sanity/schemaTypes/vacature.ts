@@ -1,10 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { FUNCTIEGROEPEN, PLOEGENDIENSTEN, REGIOS, SECTOREN, SECTOR_UITLEG } from "@/lib/types";
-
-const SECTOR_OPTIES = SECTOREN.map((value) => ({
-  value,
-  title: SECTOR_UITLEG[value] ? `${value} (${SECTOR_UITLEG[value]})` : value,
-}));
+import { FUNCTIEGROEPEN, PLOEGENDIENSTEN, REGIOS, SECTOREN } from "@/lib/types";
 
 // Oude vacatures hebben één regio/sector; die velden blijven zichtbaar zolang ze
 // gevuld zijn. Nieuwe vacatures gebruiken "Regio's" en "Sectoren".
@@ -57,7 +52,7 @@ export const vacature = defineType({
       description: "Eén of meer sectoren. Bij een wervingspagina vink je alle sectoren aan waarin je deze functie plaatst.",
       type: "array",
       of: [{ type: "string" }],
-      options: { list: SECTOR_OPTIES, layout: "grid" },
+      options: { list: [...SECTOREN], layout: "grid" },
       validation: (rule) =>
         rule.custom((value, context) =>
           (value as string[] | undefined)?.length || (context.document as DocMetLocatie)?.sector
@@ -70,7 +65,7 @@ export const vacature = defineType({
       title: "Sector (oud veld)",
       description: "Oud veld met één sector. Gebruik bij voorkeur Sectoren hierboven en maak dit veld daarna leeg.",
       type: "string",
-      options: { list: [...SECTOREN, "Steen"] },
+      options: { list: [...SECTOREN] },
       hidden: ({ value }) => !value,
     }),
     defineField({
