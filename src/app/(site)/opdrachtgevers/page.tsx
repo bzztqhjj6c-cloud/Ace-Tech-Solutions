@@ -47,7 +47,7 @@ export default async function OpdrachtgeversPage() {
 
       <div className="border-b-2 border-line bg-panel py-16 md:py-24">
         <Container>
-          <p className="eyebrow text-accent tracking-[0.2em]">[ Waarom Ace Flex Solutions ]</p>
+          <h2 className="eyebrow text-accent tracking-[0.2em]">[ Waarom Ace Flex Solutions ]</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {WAAROM_ACE_FLEX.map(([title, body]) => (
               <ScrollReveal key={title} className="h-full">
