@@ -3,6 +3,8 @@ import { pageMetadata } from "@/lib/seo";
 import { PhotoHero } from "@/components/PhotoHero";
 import { PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Aanspreekpunt } from "@/components/Aanspreekpunt";
+import { getSiteSettings } from "@/lib/settings";
 
 // TODO: vervangen door een foto van Ace Flex Solutions zelf zodra beschikbaar.
 // Rechtenvrij (Unsplash-licentie).
@@ -22,7 +24,9 @@ export const metadata = pageMetadata({
   path: "/over-ons",
 });
 
-export default function OverOnsPage() {
+export default async function OverOnsPage() {
+  const settings = await getSiteSettings();
+
   return (
     <>
       <PhotoHero
@@ -93,6 +97,8 @@ export default function OverOnsPage() {
           </p>
         </div>
       </Container>
+
+      <Aanspreekpunt email={settings.contact.email} telefoon={settings.contact.telefoon} />
     </>
   );
 }

@@ -4,7 +4,9 @@ import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
 import { getSiteSettings } from "@/lib/settings";
 import { PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
+import Image from "next/image";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { AANSPREEKPUNT } from "@/components/Aanspreekpunt";
 
 export const metadata = pageMetadata({
   title: "Contact | Ace Flex Solutions",
@@ -30,7 +32,21 @@ export default async function ContactPage() {
         <ScrollReveal className="self-start md:mt-[1.375rem]">
           <aside className="border border-accent/30 p-5" style={PREMIUM_TILE_STYLE}>
           <p className="eyebrow text-accent tracking-[0.2em]">[ Direct contact ]</p>
-          <dl className="mt-4 space-y-4 text-sm">
+          <div className="mt-4 flex items-center gap-4">
+            <Image
+              src={AANSPREEKPUNT.foto}
+              alt={AANSPREEKPUNT.alt}
+              width={1125}
+              height={1406}
+              sizes="80px"
+              className="h-24 w-20 shrink-0 border border-accent/30 object-cover object-top"
+            />
+            <div>
+              <p className="font-display text-lg uppercase leading-tight tracking-wide">{AANSPREEKPUNT.naam}</p>
+              <p className="mt-1 text-sm opacity-70">Jouw vaste aanspreekpunt</p>
+            </div>
+          </div>
+          <dl className="mt-5 space-y-4 border-t border-accent/20 pt-5 text-sm">
             <div>
               <dt className="eyebrow opacity-60">E-mail</dt>
               <dd className="mt-1">
