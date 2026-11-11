@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { pageMetadata } from "@/lib/seo";
 import { PhotoHero } from "@/components/PhotoHero";
 import { PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -13,6 +14,13 @@ const WAT_WE_OPLOSSEN = [
   "Vervanging of versterking van je technische dienst",
   "Overbrugging tot een vaste monteur",
 ];
+
+export const metadata = pageMetadata({
+  title: "Over ons | Ace Flex Solutions",
+  description:
+    "Ace Flex Solutions is er voor twee groepen. Voor zzp'ers die mooie, uitdagende opdrachten willen realiseren in de procesindustrie, en voor bedrijven die vaklui nodig hebben.",
+  path: "/over-ons",
+});
 
 export default function OverOnsPage() {
   return (

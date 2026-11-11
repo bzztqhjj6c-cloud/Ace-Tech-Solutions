@@ -1,4 +1,5 @@
 import { Container } from "@/components/Container";
+import { pageMetadata } from "@/lib/seo";
 import { PhotoHero } from "@/components/PhotoHero";
 import { PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
 import { getSiteSettings } from "@/lib/settings";
@@ -16,6 +17,13 @@ const WAAROM_ACE_FLEX = [
   ["Matching op vakgebied", "We luisteren eerst naar wat er speelt en matchen op basis daarvan. Dat scheelt inwerktijd en misverstanden."],
   ["Zelfstandige professionals", "Onze technici zijn gewend zelfstandig te werken, zonder dat je ze aan de hand hoeft te nemen."],
 ];
+
+export const metadata = pageMetadata({
+  title: "Voor opdrachtgevers | Ace Flex Solutions",
+  description:
+    "Storing, onderhoud of een structureel tekort aan technisch personeel. Wij zorgen dat er een monteur staat die past. Daar draait het om.",
+  path: "/opdrachtgevers",
+});
 
 export default async function OpdrachtgeversPage() {
   const settings = await getSiteSettings();

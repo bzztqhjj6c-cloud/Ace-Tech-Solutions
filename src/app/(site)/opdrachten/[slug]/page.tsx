@@ -2,6 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
 import { Sollicitatie } from "@/components/SollicitatieForm";
+import { JsonLd } from "@/components/JsonLd";
+import { LOGO_URL, SITE_NAME, SITE_URL, kortIn, pageMetadata } from "@/lib/seo";
+import type { Vacature } from "@/lib/types";
 import { getVacatureBySlug, getVacatures } from "@/lib/vacatures";
 
 export const revalidate = 60;
@@ -11,6 +14,53 @@ export const revalidate = 60;
 export async function generateStaticParams() {
   const vacatures = await getVacatures();
   return vacatures.map((vacature) => ({ slug: vacature.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const vacature = await getVacatureBySlug(slug);
+  if (!vacature) return {};
+
+  return pageMetadata({
+    // Formaat: "[Functie] [regio] | Ace Flex Solutions"
+    title: `${vacature.titel} ${vacature.regio} | ${SITE_NAME}`,
+    // Begin van de vacaturetekst; zonder tekst de regel die ook op de pagina staat.
+    description: vacature.beschrijving
+      ? kortIn(vacature.beschrijving)
+      : `${vacature.functiegroep} in ${vacature.regio}`,
+    path: `/opdrachten/${vacature.slug}`,
+  });
+}
+
+// JobPosting-schema met alleen gegevens die op de pagina staan. Ontbrekend
+// (want niet op de pagina): datePosted, jobLocation.address.addressCountry,
+// validThrough en baseSalary (er staat geen tarief op de pagina).
+function jobPostingSchema(vacature: Vacature) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    title: vacature.titel,
+    ...(vacature.beschrijving ? { description: vacature.beschrijving } : {}),
+    url: `${SITE_URL}/opdrachten/${vacature.slug}`,
+    employmentType: "CONTRACTOR",
+    industry: vacature.brancheTitel ?? vacature.sector,
+    hiringOrganization: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      sameAs: SITE_URL,
+      logo: LOGO_URL,
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: { "@type": "PostalAddress", addressRegion: vacature.regio },
+    },
+    // Er staat een sollicitatieformulier op de pagina zelf.
+    directApply: true,
+  };
 }
 
 export default async function VacatureDetailPage({
@@ -27,6 +77,9 @@ export default async function VacatureDetailPage({
 
   return (
     <Container className="py-16 md:py-24">
+      {/* Alleen voor open opdrachten: vervulde vacatures zijn geen vacature meer. */}
+      {vacature.status === "open" && <JsonLd data={jobPostingSchema(vacature)} />}
+
       <Link href="/opdrachten" className="eyebrow hover:text-accent">
         ← Alle opdrachten
       </Link>

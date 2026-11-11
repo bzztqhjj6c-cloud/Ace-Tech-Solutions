@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/Container";
 import { PhotoHero } from "@/components/PhotoHero";
 import { OpdrachtenBrowser } from "@/components/OpdrachtenBrowser";
@@ -9,6 +10,13 @@ import { getVacatures } from "@/lib/vacatures";
 const HERO_IMAGE = "https://images.unsplash.com/photo-1512813759302-a44af29da3c1?w=2400&q=80&fm=jpg&fit=crop";
 
 export const revalidate = 60;
+
+export const metadata = pageMetadata({
+  title: "Opdrachten | Ace Flex Solutions",
+  description:
+    "Wij zoeken zelfstandige monteurs, engineers en technisch leidinggevenden voor de procesindustrie. Hieronder zie je waar je op kunt reageren.",
+  path: "/opdrachten",
+});
 
 export default async function OpdrachtenPage() {
   const vacatures = await getVacatures();

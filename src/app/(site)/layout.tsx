@@ -7,6 +7,7 @@ import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { CookieConsent } from "@/components/CookieConsent";
 import { UnderConstruction } from "@/components/UnderConstruction";
 import { getSiteSettings } from "@/lib/settings";
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -19,9 +20,15 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "Ace Flex Solutions | Connecting Winners in Technology",
   description:
     "Boutique werving en bemiddeling van freelance technici in de procesindustrie. Naast de klant staan, niet erboven.",
+  openGraph: {
+    type: "website",
+    locale: "nl_NL",
+    siteName: SITE_NAME,
+  },
 };
 
 export default async function RootLayout({

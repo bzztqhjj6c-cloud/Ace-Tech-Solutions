@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/Container";
 import { PhotoHero } from "@/components/PhotoHero";
 import { FUNCTIEGROEPEN } from "@/lib/types";
@@ -24,6 +25,13 @@ const ZO_WERKT_HET = [
   ["Je hoort snel iets terug", "Meestal dezelfde dag nog."],
   ["Aan de slag, op jouw voorwaarden", "Simpel!"],
 ];
+
+export const metadata = pageMetadata({
+  title: "Voor ZZP'ers | Ace Flex Solutions",
+  description:
+    "Jij kent je vak. Wij kennen de opdrachten. Geen eindeloze bemiddelaars, geen kleine lettertjes achteraf. Eén aanspreekpunt dat je belt zodra er een opdracht is die past.",
+  path: "/zzpers",
+});
 
 export default function ZzpersPage() {
   return (

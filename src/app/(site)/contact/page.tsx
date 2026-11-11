@@ -1,9 +1,17 @@
 import { Container } from "@/components/Container";
+import { pageMetadata } from "@/lib/seo";
 import { PageHero } from "@/components/PageHero";
 import { ContactForm } from "@/components/ContactForm";
 import { getSiteSettings } from "@/lib/settings";
 import { PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
 import { ScrollReveal } from "@/components/ScrollReveal";
+
+export const metadata = pageMetadata({
+  title: "Contact | Ace Flex Solutions",
+  description:
+    "Een opdracht, een vraag, of gewoon even sparren of we iets voor elkaar kunnen betekenen. Stuur een bericht of neem direct contact op.",
+  path: "/contact",
+});
 
 export default async function ContactPage() {
   const settings = await getSiteSettings();

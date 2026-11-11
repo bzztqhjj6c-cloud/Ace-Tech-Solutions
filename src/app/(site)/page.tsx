@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { JsonLd } from "@/components/JsonLd";
+import { LOGO_URL, SITE_URL, pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/Container";
 import { VacatureCard } from "@/components/VacatureCard";
 import { PhotoHero } from "@/components/PhotoHero";
@@ -22,12 +24,32 @@ const HERO_IMAGE = "https://images.unsplash.com/photo-1455165814004-1126a7199f9b
 
 export const revalidate = 60;
 
+export const metadata = pageMetadata({
+  title: "Ace Flex Solutions | Connecting Winners in Technology",
+  description:
+    "Boutique werving en bemiddeling van freelance technici in de procesindustrie. Naast de klant staan, niet erboven.",
+  path: "/",
+});
+
 export default async function HomePage() {
   const settings = await getSiteSettings();
   const vacatures = (await getVacatures()).filter((v) => v.status === "open").slice(0, 3);
 
+  // Organization-schema met alleen gegevens die al op de site staan (footer/contact).
+  const organisatie = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: settings.bedrijfsnaam,
+    url: SITE_URL,
+    logo: LOGO_URL,
+    email: settings.contact.email,
+    telephone: settings.contact.telefoon,
+    address: settings.contact.adres,
+  };
+
   return (
     <>
+      <JsonLd data={organisatie} />
       <PhotoHero
         image={HERO_IMAGE}
         imageAlt="Lassen met vonken tijdens technisch werk"
