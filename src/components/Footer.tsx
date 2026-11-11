@@ -32,17 +32,17 @@ export function Footer({ settings }: { settings: SiteSettings }) {
           </ul>
           <ul className="mt-6 space-y-1 normal-case tracking-normal">
             <li>
-              <Link href="/opdrachten" className="hover:text-accent">
+              <Link href="/opdrachten" className="inline-block py-1.5 hover:text-accent">
                 Bekijk opdrachten →
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-accent">
+              <Link href="/contact" className="inline-block py-1.5 hover:text-accent">
                 Neem contact op →
               </Link>
             </li>
             <li>
-              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="hover:text-accent">
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 hover:text-accent">
                 Volg ons op LinkedIn →
               </a>
             </li>

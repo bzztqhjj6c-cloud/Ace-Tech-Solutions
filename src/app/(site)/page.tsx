@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { JsonLd } from "@/components/JsonLd";
-import { LINKEDIN_URL, LOGO_URL, SITE_URL, pageMetadata } from "@/lib/seo";
+import { LINKEDIN_URL, LOGO_URL, SITE_NAME, SITE_URL, pageMetadata } from "@/lib/seo";
 import { Container } from "@/components/Container";
 import { VacatureCard } from "@/components/VacatureCard";
 import { PhotoHero } from "@/components/PhotoHero";
@@ -52,6 +52,8 @@ export default async function HomePage() {
   return (
     <>
       <JsonLd data={organisatie} />
+      {/* WebSite-schema: Google gebruikt "name" als sitenaam boven het zoekresultaat. */}
+      <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: SITE_URL }} />
       <PhotoHero
         image={HERO_IMAGE}
         imageAlt="Lassen met vonken tijdens technisch werk"
@@ -91,7 +93,7 @@ export default async function HomePage() {
               <ScrollReveal key={title} className="h-full">
                 <div className="h-full border border-accent/30 p-6" style={PREMIUM_TILE_STYLE}>
                   <span className="block h-px w-10 bg-accent" />
-                  <h3 className="font-display mt-4 text-lg uppercase leading-tight tracking-wide">{title}</h3>
+                  <h2 className="font-display mt-4 text-lg uppercase leading-tight tracking-wide">{title}</h2>
                   <p className="mt-2 text-sm opacity-70">{body}</p>
                 </div>
               </ScrollReveal>

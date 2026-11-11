@@ -34,7 +34,7 @@ export default function OverOnsPage() {
 
       <div className="border-b-2 border-line bg-panel py-16 md:py-24">
         <Container>
-          <p className="eyebrow text-accent tracking-[0.2em]">[ Wat we oplossen ]</p>
+          <h2 className="eyebrow text-accent tracking-[0.2em]">[ Wat we oplossen ]</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {WAT_WE_OPLOSSEN.map((title) => (
               <ScrollReveal key={title} className="h-full">
