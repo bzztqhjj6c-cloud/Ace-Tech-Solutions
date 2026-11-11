@@ -25,15 +25,31 @@ export function ContactForm() {
         <label htmlFor="website">Laat dit veld leeg</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
-      <div>
-        <label htmlFor="naam" className="eyebrow block opacity-70">Naam</label>
-        <input
-          id="naam"
-          name="naam"
-          type="text"
-          required
-          className="mt-1 w-full border border-line/60 bg-panel px-4 py-3 text-foreground focus:border-accent focus:outline-none"
-        />
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor="voornaam" className="eyebrow block opacity-70">Voornaam</label>
+          <input
+            id="voornaam"
+            name="voornaam"
+            type="text"
+            required
+            autoComplete="given-name"
+            maxLength={60}
+            className="mt-1 w-full border border-line/60 bg-panel px-4 py-3 text-foreground focus:border-accent focus:outline-none"
+          />
+        </div>
+        <div>
+          <label htmlFor="achternaam" className="eyebrow block opacity-70">Achternaam</label>
+          <input
+            id="achternaam"
+            name="achternaam"
+            type="text"
+            required
+            autoComplete="family-name"
+            maxLength={80}
+            className="mt-1 w-full border border-line/60 bg-panel px-4 py-3 text-foreground focus:border-accent focus:outline-none"
+          />
+        </div>
       </div>
       <div>
         <label htmlFor="email" className="eyebrow block opacity-70">E-mail</label>
