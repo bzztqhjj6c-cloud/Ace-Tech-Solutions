@@ -18,19 +18,22 @@ export async function submitContactForm(
   _previousState: ContactFormState,
   formData: FormData
 ): Promise<ContactFormState> {
-  const naam = formData.get("naam")?.toString().trim() ?? "";
+  const voornaam = formData.get("voornaam")?.toString().trim() ?? "";
+  const achternaam = formData.get("achternaam")?.toString().trim() ?? "";
+  const naam = `${voornaam} ${achternaam}`.trim();
   const email = formData.get("email")?.toString().trim() ?? "";
   const telefoon = formData.get("telefoon")?.toString().trim() ?? "";
   const bericht = formData.get("bericht")?.toString().trim() ?? "";
   const website = formData.get("website")?.toString().trim() ?? "";
 
   if (website) return { status: "success", message: "Bedankt voor je bericht." };
-  if (!naam || !email || !telefoon || !bericht) {
+  if (!voornaam || !achternaam || !email || !telefoon || !bericht) {
     return { status: "error", message: "Vul alle velden in." };
   }
   const telefoonDigits = telefoon.replace(/\D/g, "");
   if (
-    naam.length > 120 ||
+    voornaam.length > 60 ||
+    achternaam.length > 80 ||
     email.length > 254 ||
     telefoon.length > 40 ||
     bericht.length > 10000
@@ -64,7 +67,7 @@ export async function submitContactForm(
       // (bijv. hotmail.com) laat de spamfilter van de mailhost deze mail als spam markeren
       // (SPOOF_REPLYTO). Het adres staat daarom bovenaan in de tekst.
       subject: `Websitebericht van ${naam}`,
-      text: `Reageren? Mail naar ${email} of bel ${telefoon}.\n\nNaam: ${naam}\nE-mail: ${email}\nTelefoon: ${telefoon}\n\nBericht:\n${bericht}`,
+      text: `Reageren? Mail naar ${email} of bel ${telefoon}.\n\nVoornaam: ${voornaam}\nAchternaam: ${achternaam}\nE-mail: ${email}\nTelefoon: ${telefoon}\n\nBericht:\n${bericht}`,
     });
 
     if (error) {
@@ -80,8 +83,9 @@ export async function submitContactForm(
       to: email,
       replyTo: CONTACT_EMAIL,
       subject: CONFIRMATION_SUBJECT,
-      text: confirmationText(naam),
-      html: confirmationHtml(naam),
+      // Persoonlijke aanhef met alleen de voornaam: "Beste Jan,".
+      text: confirmationText(voornaam),
+      html: confirmationHtml(voornaam),
     });
 
     if (confirmationError) {
