@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { pageMetadata } from "@/lib/seo";
 import { CookieSettingsButton } from "@/components/CookieConsent";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Privacyverklaring | Ace Flex Solutions",
   description: "Hoe Ace Flex Solutions omgaat met je persoonsgegevens.",
-};
+  path: "/privacyverklaring",
+});
 
 const EMAIL = "info@ace-flex.nl";
 
