@@ -9,9 +9,8 @@ import { CONTACT_EMAIL } from "@/lib/contact";
 
 const WHATSAPP_NUMMER = "31615151606";
 
-// TODO: vervangen door een foto van Ace Flex Solutions zelf zodra beschikbaar.
-// Rechtenvrij (Unsplash-licentie).
-const HERO_IMAGE = "https://images.unsplash.com/photo-1661263989536-d44cbe1c2ff0?w=2400&q=80&fm=jpg&fit=crop";
+// Eigen beeld (gemaakt met AI, gecontroleerd op realisme en veiligheid).
+const HERO_IMAGE = "/images/hero-zzpers.jpg";
 
 const WAT_JE_KRIJGT = [
   ["Eerlijke tarieven, geen gedoe", "Je weet vooraf waar je aan toe bent. Geen verborgen inhoudingen, geen bemiddelaar die aan beide kanten meesnoept."],
@@ -38,8 +37,8 @@ export default function ZzpersPage() {
     <>
       <PhotoHero
         image={HERO_IMAGE}
-        imageAlt="Technicus met helm loopt zelfverzekerd door een procesinstallatie"
-        objectPosition="center 30%"
+        imageAlt="Elektromonteur controleert met een spanningszoeker een schakelkast naast een productielijn"
+        objectPosition="62% 35%"
         headline="Jij kent je vak. Wij kennen de opdrachten."
       >
         <p

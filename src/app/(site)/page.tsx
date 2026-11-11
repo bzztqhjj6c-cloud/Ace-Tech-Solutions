@@ -17,10 +17,8 @@ const WAT_TECHNICI_ZOEKEN = [
   "Marktconform tarief",
 ];
 
-// TODO: vervangen door een foto van Ace Flex Solutions zelf zodra beschikbaar.
-// Rechtenvrij (Unsplash-licentie), zelfde bron als de vorige versie van de site.
-// Breedbeeld (landscape) in plaats van staand, omdat dit beter cropt op grote schermen.
-const HERO_IMAGE = "https://images.unsplash.com/photo-1455165814004-1126a7199f9b?w=2400&q=80&fm=jpg&fit=crop";
+// Eigen beeld (gemaakt met AI, gecontroleerd op realisme en veiligheid).
+const HERO_IMAGE = "/images/hero-home.jpg";
 
 export const revalidate = 60;
 
@@ -56,8 +54,8 @@ export default async function HomePage() {
       <JsonLd data={{ "@context": "https://schema.org", "@type": "WebSite", name: SITE_NAME, url: SITE_URL }} />
       <PhotoHero
         image={HERO_IMAGE}
-        imageAlt="Lassen met vonken tijdens technisch werk"
-        objectPosition="55% 45%"
+        imageAlt="Monteur stelt met een steeksleutel een transportband bij in een voedingsmiddelenfabriek"
+        objectPosition="72% 40%"
         headline={settings.tagline}
       >
         <div
