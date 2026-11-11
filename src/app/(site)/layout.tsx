@@ -29,6 +29,8 @@ export const metadata: Metadata = {
     locale: "nl_NL",
     siteName: SITE_NAME,
   },
+  // Grote afbeelding bij gedeelde links op X (gebruikt de Open Graph-afbeelding).
+  twitter: { card: "summary_large_image" },
 };
 
 export default async function RootLayout({
