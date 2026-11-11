@@ -28,7 +28,7 @@ export function Aanspreekpunt({ email, telefoon }: { email: string; telefoon: st
             <p className="mt-4 text-lg leading-relaxed opacity-90">
               Je schakelt met dezelfde persoon en niet met een wisselend accountteam of een
               callcenter vol onbekenden. Of je nu een opdracht zoekt of technisch personeel nodig
-              hebt: één vast aanspreekpunt, van het eerste gesprek tot en met de opdracht.
+              hebt: één vast aanspreekpunt.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
