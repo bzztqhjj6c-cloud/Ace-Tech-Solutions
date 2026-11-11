@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Vacature } from "@/lib/types";
+import { brancheTekst, regioTekst } from "@/lib/vacature-weergave";
 import { PREMIUM_TILE_STYLE } from "@/lib/premiumStyle";
 
 export function VacatureCard({
@@ -9,7 +10,7 @@ export function VacatureCard({
   vacature: Vacature;
   layout?: "grid" | "list";
 }) {
-  const brancheLabel = vacature.brancheTitel ?? vacature.sector;
+  const brancheLabel = brancheTekst(vacature);
 
   if (layout === "list") {
     return (
@@ -20,7 +21,7 @@ export function VacatureCard({
       >
         <div>
           <div className="eyebrow flex flex-wrap items-center gap-2 opacity-70">
-            <span>{vacature.regio}</span>
+            <span>{regioTekst(vacature)}</span>
             <span>|</span>
             <span>{vacature.functiegroep}</span>
           </div>
@@ -46,7 +47,7 @@ export function VacatureCard({
       style={PREMIUM_TILE_STYLE}
     >
       <div className="eyebrow opacity-70">
-        <span>{vacature.regio}</span>
+        <span>{regioTekst(vacature)}</span>
       </div>
       <h3 className="font-display mt-3 text-2xl uppercase leading-tight tracking-wide">{vacature.titel}</h3>
       <p className="eyebrow mt-3 opacity-70">({brancheLabel})</p>

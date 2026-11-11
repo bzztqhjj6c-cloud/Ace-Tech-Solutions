@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { LOGO_URL, SITE_NAME, SITE_URL, kortIn, pageMetadata } from "@/lib/seo";
 import type { Vacature } from "@/lib/types";
 import { getVacatureBySlug, getVacatures } from "@/lib/vacatures";
+import { brancheTekst, opsomming, regioTekst } from "@/lib/vacature-weergave";
 
 export const revalidate = 60;
 
@@ -26,12 +27,16 @@ export async function generateMetadata({
   if (!vacature) return {};
 
   return pageMetadata({
-    // Formaat: "[Functie] [regio] | Ace Flex Solutions"
-    title: `${vacature.titel} ${vacature.regio} | ${SITE_NAME}`,
+    // Formaat: "[Functie] [regio] | Ace Flex Solutions". Bij drie of meer regio's
+    // (wervingspagina) alleen de functie; de regio's staan in de description.
+    title:
+      vacature.regios.length > 0 && vacature.regios.length <= 2
+        ? `${vacature.titel} ${regioTekst(vacature)} | ${SITE_NAME}`
+        : `${vacature.titel} | ${SITE_NAME}`,
     // Begin van de vacaturetekst; zonder tekst de regel die ook op de pagina staat.
     description: vacature.beschrijving
       ? kortIn(vacature.beschrijving)
-      : `${vacature.functiegroep} in ${vacature.regio}`,
+      : `${vacature.functiegroep} in ${regioTekst(vacature)}`,
     path: `/opdrachten/${vacature.slug}`,
   });
 }
@@ -48,18 +53,18 @@ function jobPostingSchema(vacature: Vacature) {
     // "Geplaatst op" staat op de pagina (datum uit Sanity).
     ...(vacature.geplaatst ? { datePosted: vacature.geplaatst } : {}),
     employmentType: "CONTRACTOR",
-    industry: vacature.brancheTitel ?? vacature.sector,
+    industry: brancheTekst(vacature),
     hiringOrganization: {
       "@type": "Organization",
       name: SITE_NAME,
       sameAs: SITE_URL,
       logo: LOGO_URL,
     },
-    jobLocation: {
+    // Regio('s) en land staan op de pagina: "<functiegroep> in <regio's>, Nederland".
+    jobLocation: vacature.regios.map((regio) => ({
       "@type": "Place",
-      // Regio en land staan op de pagina: "<functiegroep> in <regio>, Nederland".
-      address: { "@type": "PostalAddress", addressRegion: vacature.regio, addressCountry: "NL" },
-    },
+      address: { "@type": "PostalAddress", addressRegion: regio, addressCountry: "NL" },
+    })),
     // Er staat een sollicitatieformulier op de pagina zelf.
     directApply: true,
   };
@@ -85,7 +90,7 @@ export default async function VacatureDetailPage({
 
   if (!vacature) notFound();
 
-    const brancheLabel = vacature.brancheTitel ?? vacature.sector;
+    const brancheLabel = brancheTekst(vacature);
 
   return (
     <Container className="py-16 md:py-24">
@@ -102,14 +107,14 @@ export default async function VacatureDetailPage({
 
       <div className="mt-6 border-b-2 border-line pb-8">
         <p className="eyebrow text-accent tracking-[0.2em]">
-          [ {vacature.sector} ]
+          [ {opsomming(vacature.sectoren)} ]
         </p>
         <h1 className="font-display mt-4 text-[clamp(2rem,5vw,4rem)] uppercase leading-[0.95]">
           {vacature.titel}
         </h1>
           <p className="eyebrow mt-4 opacity-70">({brancheLabel})</p>
           <p className="eyebrow mt-4 opacity-70">
-            {vacature.functiegroep} in {vacature.regio}, Nederland
+            {vacature.functiegroep} in {regioTekst(vacature)}, Nederland
         </p>
         {vacature.geplaatst && (
           <p className="eyebrow mt-4 opacity-70">

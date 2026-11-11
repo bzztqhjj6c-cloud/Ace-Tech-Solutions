@@ -1,5 +1,6 @@
 import { OG_SIZE, deelAfbeelding } from "@/lib/og";
 import { getVacatureBySlug } from "@/lib/vacatures";
+import { brancheTekst, regioTekst } from "@/lib/vacature-weergave";
 
 // Deelafbeelding per vacature: titel, functiegroep en regio, zoals op de pagina.
 export const alt = "Opdracht bij Ace Flex Solutions";
@@ -15,8 +16,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   }
 
   return deelAfbeelding({
-    label: vacature.brancheTitel ?? vacature.sector,
+    label: brancheTekst(vacature),
     titel: vacature.titel,
-    ondertitel: `${vacature.functiegroep} in ${vacature.regio}`,
+    ondertitel: `${vacature.functiegroep} in ${regioTekst(vacature)}`,
   });
 }

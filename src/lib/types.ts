@@ -1,4 +1,6 @@
 export const FUNCTIEGROEPEN = [
+  "Storingsmonteur",
+  "Onderhoudsmonteur",
   "Engineer",
   "Hoofd technische dienst",
   "Monteur Allround",
@@ -51,10 +53,11 @@ export interface Vacature {
   slug: string;
   titel: string;
   functiegroep: Functiegroep;
-  sector: Sector;
   brancheTitel?: string;
-  regio: Regio;
-  regios?: Regio[];
+  // Altijd gevuld na het ophalen (lib/vacatures.ts): oude vacatures hebben één
+  // regio/sector, wervingspagina's kunnen er meerdere hebben.
+  regios: Regio[];
+  sectoren: Sector[];
   ploegendiensten: Ploegendienst[];
   beschrijving: string;
   status: VacatureStatus;
