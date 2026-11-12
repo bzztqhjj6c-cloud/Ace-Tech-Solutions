@@ -28,12 +28,7 @@ const VRAGEN_OPDRACHTGEVERS: VraagAntwoord[] = [
   {
     vraag: "Hoe zorgen jullie voor een goede match?",
     antwoord:
-      "We luisteren eerst naar wat er speelt en matchen op basis daarvan. Dat scheelt inwerktijd en misverstanden.",
-  },
-  {
-    vraag: "Moet ik de technici begeleiden?",
-    antwoord:
-      "Nee. Onze technici zijn gewend zelfstandig te werken, zonder dat je ze aan de hand hoeft te nemen.",
+      "We beginnen altijd met een gesprek, op afspraak. Daarin nemen we de tijd om te begrijpen wat er bij jou speelt: om welke installaties het gaat, in welke dienst er gewerkt wordt en wat voor iemand er in je team past. Kay Vente, je vaste aanspreekpunt, heeft jarenlange ervaring in deze branche en weet welke vragen ertoe doen en wat er op de vloer echt nodig is. Pas daarna zoeken we in ons netwerk naar de technicus die past. Zo voorkom je verrassingen en scheelt het inwerktijd en misverstanden.",
   },
   {
     vraag: "Met wie heb ik contact?",
