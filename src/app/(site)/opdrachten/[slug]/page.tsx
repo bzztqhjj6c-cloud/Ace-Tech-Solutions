@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { LOGO_URL, SITE_NAME, SITE_URL, kortIn, pageMetadata } from "@/lib/seo";
 import type { Vacature } from "@/lib/types";
 import { getVacatureBySlug, getVacatures } from "@/lib/vacatures";
-import { brancheTekst, opsomming, regioTekst } from "@/lib/vacature-weergave";
+import { brancheTekst, heelNederland, opsomming, regioTekst } from "@/lib/vacature-weergave";
 
 export const revalidate = 60;
 
@@ -114,7 +114,8 @@ export default async function VacatureDetailPage({
         </h1>
           <p className="eyebrow mt-4 opacity-70">({brancheLabel})</p>
           <p className="eyebrow mt-4 opacity-70">
-            {vacature.functiegroep} in {regioTekst(vacature)}, Nederland
+            {vacature.functiegroep} in {regioTekst(vacature)}
+            {heelNederland(vacature) ? "" : ", Nederland"}
         </p>
         {vacature.geplaatst && (
           <p className="eyebrow mt-4 opacity-70">

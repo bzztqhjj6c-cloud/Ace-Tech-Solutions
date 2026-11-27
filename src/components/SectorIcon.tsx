@@ -68,6 +68,16 @@ const ICONS: Record<Sector, React.ReactNode> = {
       <line x1="9.5" y1="13.5" x2="14.5" y2="15.5" />
     </svg>
   ),
+  Machinebouw: (
+    <svg {...ICON_PROPS}>
+      <circle cx="12" cy="12" r="5" />
+      <circle cx="12" cy="12" r="2" />
+      <line x1="12" y1="3" x2="12" y2="7" />
+      <line x1="12" y1="17" x2="12" y2="21" />
+      <line x1="3" y1="12" x2="7" y2="12" />
+      <line x1="17" y1="12" x2="21" y2="12" />
+    </svg>
+  ),
 };
 
 export function SectorIcon({ sector, className }: { sector: Sector; className?: string }) {

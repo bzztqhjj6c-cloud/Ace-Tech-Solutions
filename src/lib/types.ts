@@ -9,6 +9,7 @@ export const FUNCTIEGROEPEN = [
   "Monteur W",
   "Teamleider",
   "Werkvoorbereider",
+  "Assemblagemonteur",
 ] as const;
 
 export type Functiegroep = (typeof FUNCTIEGROEPEN)[number];
@@ -22,6 +23,7 @@ export const SECTOREN = [
   "Energie",
   "Steen",
   "Proces",
+  "Machinebouw",
 ] as const;
 
 export type Sector = (typeof SECTOREN)[number];
